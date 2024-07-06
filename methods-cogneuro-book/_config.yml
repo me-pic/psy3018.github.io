@@ -23,7 +23,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/methods-cogneuro-book  # Online location of your book
+  url: https://github.com/methods-cogneuro/methods-cogneuro.github.io  # Online location of your book
   path_to_book: methods-cogneuro-book # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
