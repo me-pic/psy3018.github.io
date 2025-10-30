@@ -14,4 +14,5 @@ chapters:
 - file: tep
 - file: cartes_statistiques
 - file: reproductibilite
+- file: impacts_env
 - file: references.md
