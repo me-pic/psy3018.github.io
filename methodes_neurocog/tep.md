@@ -317,16 +317,10 @@ Pour répondre aux questions de cet exercice, lisez d'abord l'article *Tau patho
 ![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
 [Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
 :::
-
 :::{grid-item}
-![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
-[Eddy Fortier](https://github.com/e-fortier)
-👀
-:::
-:::{grid-item}
-![Élisabeth Loranger](https://avatars.githubusercontent.com/u/90270981?v=4?s=100)
-[Élisabeth Loranger](https://github.com/elisabethloranger)
-🤔
+![François Lespinasse](https://avatars.githubusercontent.com/u/38385719?v=4?s=100)
+[François Lespinasse](https://github.com/sangfrois)
+🤔👀
 :::
 
 ::::

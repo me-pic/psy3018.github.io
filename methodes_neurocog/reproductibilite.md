@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -14,44 +11,8 @@ kernelspec:
 ---
 (reproductibilite-controverses-chapitre)=
 # Reproductibilité et controverses
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/elisabethloranger">
-        <img src="https://avatars.githubusercontent.com/u/90270981?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Élisabeth Loranger</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/eddyfortier">
-        <img src="https://avatars.githubusercontent.com/u/72314243?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Eddy Fortier</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
 
-
+## Objectifs
 Durant ce cours, nous avons effectué un survol de diverses techniques de neuroimagerie qui ouvrent une fenêtre fascinante sur la structure et la fonction du cerveau. Par contre, ces techniques sont régulièrement présentées dans des articles scientifiques qui semblent peu crédibles. Dans cet ultime cours, nous allons discuter des controverses entourant la neuroimagerie, et de façon plus large, de la crise de reproductibilité en sciences.
 
 Les objectifs de ce cours sont les suivants :
@@ -200,12 +161,19 @@ fig = sns.displot(
 )
 fig.fig.set_dpi(300)
 
-from myst_nb import glue
-glue("effect-size-fig", fig.fig, display=False)
+fig.fig.savefig(
+  "reproductibilite/effect-size-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} effect-size-fig
-:figwidth: 800px
-:name: effect-size-fig
+
+```{figure} reproductibilite/effect-size-fig.png
+---
+name: effect-size-fig
+width: 800px
+---
 Illustration de deux distributions de groupes suivant une loi normale pour différentes tailles d'effet mesurées avec le _d_ de Cohen. Figure générée avec du code python à l'aide de la librairie [seaborn](https://seaborn.pydata.org/) (cliquer sur + pour voir le code). Cette figure produite par P. Bellec est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Une autre erreur commune en neuroimagerie est d’interpréter une différence significative comme étant une différence importante. Par exemple, imaginons que l'on trouve une différence significative concernant le volume de l'amygdale entre deux groupes: celui-ci serait réduit chez des personnes sur le spectre de l’autisme par rapport à des individus neurotypiques. Cela signifierait que la différence de la moyenne des distributions est différente, mais il se peut tout à fait qu'un individu sur le spectre ait une amygdale plus grande qu'un individu neurotypique.
@@ -267,12 +235,18 @@ ax.set(xlim=(0, 100), ylabel="",
 sns.despine(left=True, bottom=True)
 fig.set_dpi(300)
 
-from myst_nb import glue
-glue("registered-report-fig", fig, display=False)
+fig.savefig(
+  "reproductibilite/registered-report-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} registered-report-fig
-:figwidth: 600px
-:name: registered-report-fig
+```{figure} reproductibilite/registered-report-fig.png
+---
+name: registered-report-fig
+width: 600px
+---
 Pourcentage de "découvertes négatives" dans la littérature. Les découvertes négatives viennent d'études pour lesquelles les analyses ne confirment pas les hypothèses de recherche. On compare ici des articles traditionnels avec des études pré-enregistrées portant sur de nouvelles hypothèses de recherche, ainsi que des études pré-enregistrées portant sur des études de réplication de résultats déjà publiés. Pour chaque pourcentage, une valeur estimée minimale et maximale est fournie. Statistiques tirées de [Allen et Mehler, 2018](https://doi.org/10.31234/osf.io/3czyt) sur 127 études pré-enregistrées. Figure générée avec du code python à l'aide de la librairie [seaborn](https://seaborn.pydata.org/) (cliquer sur + pour voir le code). Cette figure produite par P. Bellec est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
