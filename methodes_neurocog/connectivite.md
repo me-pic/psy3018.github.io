@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -14,31 +11,6 @@ kernelspec:
 ---
 (connectivite-chapitre)=
 # Connectivité fonctionnelle
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/sangfrois">
-        <img src="https://avatars.githubusercontent.com/u/38385719?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>François Lespinasse</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Code">💻</a>
-        <a title="Exercices">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
 
 ## Objectifs
 Dans le chapitre sur les [cartes d'activation en IRMf](irm_fonctionnelle), nous avons vu que ce type d'analyse met l'emphase sur la notion de ségrégation fonctionnelle, c'est à dire à quel point certaines régions cérébrales sont engagées spécifiquement par une certaine catégorie de processus cognitifs. Mais il est bien connu que les processus cognitifs requièrent aussi un certain degré d'**intégration fonctionnelle**, où différentes régions du cerveau interagissent ensemble pour effectuer une tâche. Cette notion d'intégration amène à concevoir le cerveau comme un réseau, ou encore un graphe, qui décrit la **connectivité fonctionnelle** entre régions du cerveau. Ce chapitre introduit des notions de base utilisées pour étudier la connectivité du cerveau à l'aide de l'IRMf.
@@ -146,14 +118,18 @@ _montre_serie(tseries1, tseries3, ax_plot, 'b-', 'g-')
 ax_plot = plt.subplot2grid((3, 3), (2, 2), colspan=1)
 _montre_serie(tseries2, tseries3, ax_plot, 'r-', 'g-')
 
-from myst_nb import glue
-glue("connectivity-fig", fig, display=False)
+fig.savefig(
+  "connectivite/connectivity-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} connectivity-fig
-:figwidth: 600px
-:name: connectivity-fig
-:align: center
+```{figure} connectivite/connectivity-fig.png
+---
+name: connectivity-fig
+width: 600px
+---
 Connectivité fonctionnelle entre régions cérébrales, pour un sujet du jeu de données ADHD-200 {cite:p}`HD-200_Consortium2012-uv`. Pour chaque région (à gauche), on extrait l'activité moyenne. Pour chaque paire de régions, la connectivité est mesurée par la corrélation `r` entre les séries temporelles associées (à droite). Les couleurs des régions et des séries temporelles se correspondent. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 La ***connectivité fonctionnelle*** est un terme relativement générique utilisé pour décrire une mesure des dépendances spatiales de l'activité cérébrale {cite:p}`Fox2007`. La technique la plus simple pour mener ce genre d'analyse est d'extraire les décours temporels de deux régions,  et d'en déterminer la corrélation `r`. La connectivité fonctionnelle s'interprète alors de la manière suivante dans le cadre de l'expérience:
@@ -254,14 +230,20 @@ plotting.plot_stat_map(conn_map,
                        cut_coords=(37, -20, 59),
                        title="carte de connectivité (M1 droit)")
 
-from myst_nb import glue
-glue("fcmri-map-fig", fig, display=False)
-```
 
-```{glue:figure} fcmri-map-fig
-:figwidth: 600px
-:name: fcmri-map-fig
-:align: center
+fig.savefig(
+  "connectivite/fcmri-map-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
+```
+```{figure} connectivite/fcmri-map-fig.png
+---
+name: fcmri-map-fig
+width: 600px
+---
 Cartes de connectivité au repos générées à partir des données IRMf d'un individu du jeu de données ADHD-200 {cite:p}`HD-200_Consortium2012-uv` (bas, droit). La région cible utilisée est dans le cortex sensorimoteur droit (haut, gauche) identifie le réseau sensorimoteur. Les cinq premières minutes d'activité BOLD associée à la région cible sont représentées (haut, droit). Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 
@@ -362,14 +344,19 @@ plotting.plot_stat_map(conn_map,
                        cut_coords=(0, -52, 26),
                        title="carte de connectivité (PCC)")
 
-from myst_nb import glue
-glue("fcmri-dmn-fig", fig, display=False)
+fig.savefig(
+  "connectivite/fcmri-dmn-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} fcmri-dmn-fig
-:figwidth: 600px
-:name: fcmri-dmn-fig
-:align: center
+```{figure} connectivite/fcmri-dmn-fig.png
+---
+name: fcmri-dmn-fig
+width: 600px
+---
 Cartes de connectivité au repos générées à partir des données IRMf d'un individu du jeu de données ADHD-200 {cite:p}`HD-200_Consortium2012-uv` (bas, droit). La région cible utilisée est dans le cortex cingulaire postérieur (haut, gauche) identifie le réseau du mode par défaut. Les cinq premières minutes d'activité BOLD associée à la région cible sont représentées (haut, droit). Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 
@@ -426,7 +413,7 @@ fmri_glm = FirstLevelModel(t_r=7,
 fmri_glm = fmri_glm.fit(fmri_img, events)
 
 # Extract activation clusters
-z_map = fmri_glm.compute_contrast('active - rest')
+z_map = fmri_glm.compute_contrast('listening')
 
 # plot activation map
 ax_plot = plt.gca()
@@ -434,15 +421,18 @@ plotting.plot_stat_map(
         z_map, threshold=2, vmax=5, figure=fig,
         axes=ax_plot, colorbar=True, cut_coords=(3., -21, 45), bg_img=mean_img, title='carte d\'activation (auditif)')
 
-# Glue the figure
-from myst_nb import glue
-glue("deactivation-fig", fig, display=False)
+fig.savefig(
+  "connectivite/deactivation-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} deactivation-fig
-:figwidth: 600px
-:name: deactivation-fig
-:align: center
+```{figure} connectivite/deactivation-fig.png
+---
+name: deactivation-fig
+width: 600px
+---
  Carte d'activation individuelle dans un paradigme auditif (jeu de données [spm_auditory](https://www.fil.ion.ucl.ac.uk/spm/data/auditory/)). Le seuil de significativité est sélectionné de manière libérale (`|z|>2`). Une déactivation modérée est identifiée dans différentes régions du cerveau, incluant le cortex cingulaire postérieur (PCC) et le cortex préfrontal médian (mPFC). Le PCC et le mPFC sont des régions clés du réseau du mode par défaut. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 Le réseau du mode par défaut a d'abord été découvert au travers d'études par activation {cite:p}`Shulman1997-fy` combinent 9 études PET qui utilisent la même condition de contrôle de "repos" (consistant à regarder des stimuli visuels de manière passive), et . Les auteurs démontrent qu'un ensemble de régions sont systématiquement plus impliquées au repos que durant des des tâches variées mais cognitivement demandantes. Ces régions impliquent notamment notamment le cortex cingulaire postérieur (PCC). L'"_hypothèse du mode par défaut_" stipule qu'il existe un certain nombre de processus cognitifs d'introspection qui seraient systématiquement présents dans un état de repos, et il existerait un réseau fonctionnel qui soutiendrait cette activité "par défaut" {cite:p}`Raichle2001-en`. Les cartes de connectivité au repos en IRMf avec une région cible dans le PCC identifient également le réseau du mode par défaut, voir {numref}`fcmri-dmn-fig`.
@@ -542,15 +532,19 @@ plotting.plot_stat_map(conn_map,
                        display_mode = 'x',
                        title="carte de connectivité (FEF)")
 
-# Glue the figure
-from myst_nb import glue
-glue("negative-DMN-fig", fig, display=False)
+fig.savefig(
+  "connectivite/negative-DMN-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} negative-DMN-fig
-:figwidth: 600px
-:name: negative-DMN-fig
-:align: center
-  Une région cible est sélectionnée au niveau "frontal eye field" (FEF), pour générer une carte de connectivité sur un sujet du jeu de données ADHD-200 {cite:p}`HD-200_Consortium2012-uv`. Le seuil de significativité est sélectionné de manière libérale (`|r|>0.2`). En plus du réseau attentional dorsal associé au FEF, la carte de connectivité met en évidence une corrélation négative avec le PCC et le cortex cingulaire antérieur (ACC). L'ACC et le PCC sont des régions clés du réseau du mode par défaut. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
+```{figure} connectivite/negative-DMN-fig.png
+---
+name: negative-DMN-fig
+width: 600px
+---
+Une région cible est sélectionnée au niveau "frontal eye field" (FEF), pour générer une carte de connectivité sur un sujet du jeu de données ADHD-200 {cite:p}`HD-200_Consortium2012-uv`. Le seuil de significativité est sélectionné de manière libérale (`|r|>0.2`). En plus du réseau attentional dorsal associé au FEF, la carte de connectivité met en évidence une corrélation négative avec le PCC et le cortex cingulaire antérieur (ACC). L'ACC et le PCC sont des régions clés du réseau du mode par défaut. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 Le réseau du mode par défaut n'est pas le seul que l'on puisse identifier au repos. On a déjà vu le réseau sensorimoteur qui a été le premier identifié par Biswal. Un autre réseau couramment examiné dans la littérature est le réseau attentionnel dorsal (DAN), qui comprend notamment les sillons intra-pariétaux supérieurs et les champs oculaires frontaux. Le DAN est souvent identifié comme activé dans les expériences utilisant une tâche cognitivement demandante en IRMf, et est parfois appelé le "task positive network" - même s'il n'est pas positivement engagé par toutes les tâches. En 2005, Fox et collègues {cite:p}`Fox2005-ge` remarquent une corrélation négative entre le DAN et le réseau du mode par défaut. Cette analyse renforce la notion de transitions spontanées entre un état mental dirigé vers les stimuli extérieurs, et un état introspectif, reflétant la compétition entre deux réseaux distribués.
 ```{admonition} Controverses sur la régression du signal global
@@ -654,15 +648,19 @@ plotting.plot_roi(part_img,
                   axes=ax_plot,
                   cut_coords=[0, -52, 26])
 
-# Glue the figure
-from myst_nb import glue
-glue("network-fig", fig, display=False)
+fig.savefig(
+  "connectivite/network-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} network-fig
-:figwidth: 800px
-:name: network-fig
-:align: center
-  Une parcellisation fonctionnelle du cerveau avec 122 parcelles est présentée à gauche (BASC). Au centre, on voit une matrice où chaque élément représente la corrélation entre l'activité de deux parcelles. Les parcelles ont été ordonnées de manière à mettre en évidence des carrés diagonaux: ce sont des groupes de régions dont l'activité corrèlent fortement entre elles, et peu avec le reste du cerveau. Des algorithmes de type clustering permettent de détecter automatiquement ces groupes de parcelles, appelés réseaux fonctionnels. Un exemple de réseaux fonctionnels générés avec un clustering hiérarchique est présenté à droite, qui identifie notamment le réseau du mode par défaut. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
+```{figure} connectivite/network-fig.png
+---
+name: network-fig
+width: 600px
+---
+Une parcellisation fonctionnelle du cerveau avec 122 parcelles est présentée à gauche (BASC). Au centre, on voit une matrice où chaque élément représente la corrélation entre l'activité de deux parcelles. Les parcelles ont été ordonnées de manière à mettre en évidence des carrés diagonaux: ce sont des groupes de régions dont l'activité corrèlent fortement entre elles, et peu avec le reste du cerveau. Des algorithmes de type clustering permettent de détecter automatiquement ces groupes de parcelles, appelés réseaux fonctionnels. Un exemple de réseaux fonctionnels générés avec un clustering hiérarchique est présenté à droite, qui identifie notamment le réseau du mode par défaut. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 Nous avons parlé à plusieurs reprises de ***réseau fonctionnel***, mais sans vraiment définir ce que c'est. Lorsqu'on utilise une carte de connectivité, le réseau fonctionnel est l'ensemble des régions qui apparaissent dans la carte, et qui sont donc connectées à notre région cible. Mais cette approche dépend de la région cible. Pourtant, il est intuitif que toutes les cartes de connectivité utilisant des cibles dans, par exemple, le mode par défaut vont se ressembler. Pour formaliser cette intuition, nous avons besoin d'introduire de regarder la connectivité de _toutes_ les paires de régions en même temps, une notion appelée connectome fonctionnel. En utilisant des techniques d'apprentissage nonsupervisé, de type clustering, il est possible d'identifier des groupes de régions cérébrales qui sont fortement connectées les unes aux autres, et peu connectées au reste du cerveau. C'est la définition la plus courante d'un réseau fonctionnel. Ce type d'approche permet de découper le cerveau en réseaux, de manière automatique et guidée par les données, voir {numref}`network-fig` en bas à gauche.
 
@@ -720,15 +718,19 @@ ax_plot = plt.subplot(4, 2, 8)
 plotting.plot_roi(math_img('7 * (img==7).astype(\'float\')', img=atlas_yeo.thick_7), title='mode par défaut',
                   colorbar=True, cmap='Paired', axes=ax_plot, vmin=1, vmax=7)
 
-# Glue the figure
-from myst_nb import glue
-glue("yeo-krienen-fig", fig, display=False)
+fig.savefig(
+  "connectivite/yeo-krienen-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} yeo-krienen-fig
-:figwidth: 800px
-:name: yeo-krienen-fig
-:align: center
-  Atlas de Yeo-Krienen {cite:p}`Yeo2011-sc` construit par une analyse de clustering à partir de données IRMf au repos d'un grand nombre de sujets. Les réseaux sont définis à plusieurs résolutions dans cet atlas (7 et 17). Ici, le découpage en 7 grands réseaux distribués est présenté. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
+```{figure} connectivite/yeo-krienen-fig.png
+---
+name: yeo-krienen-fig
+width: 600px
+---
+Atlas de Yeo-Krienen {cite:p}`Yeo2011-sc` construit par une analyse de clustering à partir de données IRMf au repos d'un grand nombre de sujets. Les réseaux sont définis à plusieurs résolutions dans cet atlas (7 et 17). Ici, le découpage en 7 grands réseaux distribués est présenté. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 Il existe des atlas standards des réseaux au repos, qui ont été générés sur un grand nombre de sujets. L'atlas de Yeo, Krienen et collègues {cite:p}`Yeo2011-sc` est très utilisé, et identifient sept grands réseaux, voir {numref}`yeo-krienen-fig`. Certains de ces réseaux ont déjà été discutés dans ce chapitre: mode par défaut, attentionnel dorsal, sensorimoteur. Il faut ajouter deux autres réseaux associatifs: le frontopariétal et l'attentionnel ventral. Il y a également un réseau visuel, et un réseau mésolimbique impliquant le pôle temporal et le cortex orbitofrontal. Notez que cet atlas ignore toutes les structures sous-corticales. Notez qu'il n'y a pas un nombre exact de réseaux cérébraux, mais plutôt une hiérarchie de réseaux plus ou moins spécialisés.
 
@@ -874,3 +876,18 @@ Mais, comme l’a dit le philosophe latin (Sénèque, NDLR): le repos est loin d
  3. En quoi est-il “non psychologique” d’étudier une condition de repos?
  4. Question ouverte: est ce que l’un d’entre eux a raison? Ou les deux?
 ```
+
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+:::{grid-item}
+![François Lespinasse](https://avatars.githubusercontent.com/u/38385719?v=4?s=100)
+[François Lespinasse](https://github.com/sangfrois)
+🤔👀
+:::
+::::

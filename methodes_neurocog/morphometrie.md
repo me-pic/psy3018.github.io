@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,41 +12,7 @@ kernelspec:
 (morphometrie-chapitre)=
 # Analyses morphométriques
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/eddyfortier">
-        <img src="https://avatars.githubusercontent.com/u/72314243?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Eddy Fortier</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Quizz">⚠️</a>
-        <a title="Révision du texte">👀</a>
-        <a title="Code">💻</a>
-        <a title="Quiz">⚠️</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 
 Ce cours introduit différentes approches pour quantifier la morphologie du cerveau à l'aide des données d'imagerie par résonance magnétique anatomique. Il sera question dans ce chapitre de trois grandes approches d'analyse:
  * la **volumétrie**, qui vise à mesurer la taille d'une région cérébrale;
@@ -107,7 +70,7 @@ La **volumétrie manuelle** consiste à délimiter visuellement une aire céréb
 Cette approche nécessite du temps, car le contour des structures d'intérêt doit être dessiné à la main sur chaque coupe d'IRM.
 On commence d'abord par segmenter une structure dans un premier plan de coupe (par exemple, dans le plan axial), puis il faudra aller corriger cette segmentation dans les autres plans (par exemple, dans le plan sagittal, puis dans le plan coronal).
 
-> Pour un rappel concernant les différents types de coupes du cerveau, veuillez vous référer au [Chapitre 1: Cartes cérébrales](<coupes-tip>).
+> Pour un rappel concernant les différents types de coupes du cerveau, veuillez vous référer au [Chapitre 1: Cartes cérébrales](#coupes-tip).
 
 Afin de déterminer où une région cérébrale se situe, ce type d'approche nécessite également un protocole de segmentation avec des critères anatomiques clairs.
 Pour certaines structures, comme pour l'hippocampe, il existe des protocoles détaillés (par exemple: {cite:p}`Wisse2017-ff`).
@@ -134,7 +97,6 @@ mni = datasets.fetch_icbm152_2009()
 
 # Visualisation de la figure
 import matplotlib.pyplot as plt
-from myst_nb import glue
 from nilearn import plotting
 
 fig = plt.figure(figsize=(12, 4))
@@ -146,13 +108,17 @@ plotting.plot_roi(atlas,
     colorbar=True,
     cmap='Paired')
 
-glue("harvard-oxford-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/harvard-oxford-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} harvard-oxford-fig
-:figwidth: 800px
-:name: "harvard-oxford-fig"
-
+```{figure} morphometrie/harvard-oxford-fig.png
+---
+name: harvard-oxford-fig
+---
 Un exemple d'atlas de régions anatomiques: l'atlas Harvard-Oxford.
 Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) à partir d'un jeu de données public appelé fetch_atlas_harvard_oxford ([Nilearn, section 9.2.1: Basic Atlas plotting](https://nilearn.github.io/auto_examples/01_plotting/plot_atlas.html)) {cite:p}`MAKRIS2006155, Frazier2005, DESIKAN2006968, GOLDSTEIN2007935` (cliquer sur + pour voir le code).
 ```
@@ -174,28 +140,41 @@ L'objectif du recalage est d'augmenter le niveau de similarité entre les images
 Autrement dit, des endroits adjacents dans les images non-recalées doivent toujours être adjacents après le recalage.
 Les images ci-dessous illustrent l'effet de différents types de recalage.
 Elles sont tirées de la documentation du logiciel [slicer](https://www.slicer.org/wiki/Documentation:Nightly:Registration:RegistrationLibrary:RegLib_C42), sous licence CC-Attributions Share Alike.
+```
 
 ```{figure} morphometrie/registration_slicer_raw.gif
-:figwidth: 400px
-:align: left
+---
+width: 400px
+align: left
+class: margin-caption
+---
 Images brutes: deux scans du même sujet, prises durant deux séances d'acquisition différentes.
+```
 
 ```{figure} morphometrie/registration_slicer_affine.gif
-:figwidth: 400px
-:align: left
-:figclass: margin-caption
+---
+width: 400px
+align: left
+class: margin-caption
+---
 Images recalées par un processus de transformation affine seulement.
+```
 
 ```{figure} morphometrie/registration_slicer_nonlinear.gif
-:figwidth: 400px
-:align: left
-:figclass: margin-caption
+---
+width: 400px
+align: left
+class: margin-caption
+---
 Images recalées par une transformation affine suivie d'une transformation non-linéaire.
+```
 
 ```{figure} morphometrie/registration_slicer_nonlinear_only.gif
-:figwidth: 400px
-:align: left
-:figclass: margin-caption
+---
+width: 400px
+align: left
+class: margin-caption
+---
 Visualisation des effets du recalage non-linéaire seulement.
 ```
 
@@ -214,7 +193,6 @@ mni = fetch_icbm152_2009()
 
 # Visualise le volume cérébral
 import matplotlib.pyplot as plt
-from myst_nb import glue
 from nilearn.plotting import plot_anat
 
 fig = plt.figure(figsize=(12, 4))
@@ -224,7 +202,12 @@ plot_anat(
   cut_coords=[-17, 0, 17],
   title='Espace stereotaxique MNI152'
 )
-glue("mni-template-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/mni-template-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
 ```{admonition} Espace stéréotaxique
@@ -234,9 +217,12 @@ glue("mni-template-fig", fig, display=False)
 Afin de définir une anatomie de référence, les chercheurs utilisent généralement un cerveau "moyen".
 Pour y parvenir, les cerveaux de plusieurs dizaines d'individus sont recalés les uns avec les autres, puis moyennés jusqu'à obtenir une seule image.
 Si le recalage a bien fonctionné, comme dans le cas de l'atlas MNI152 ci-dessous, les détails de la neuroanatomie sont préservés dans la moyenne.
-```{glue:figure} mni-template-fig
-:figwidth: 600px
-:align: left
+```{figure} morphometrie/mni-template-fig.png
+---
+name: mni-template-fig
+align: left
+width: 600px
+---
 Espace stéréotaxique de l'Institut Neurologique de Montréal (MNI).
 Cette espace de référence a été obtenu en faisant la moyenne des images cérébrales de 152 sujets après avoir procédé à un recalage non-linéaire itératif {cite:p}`Fonov2011-xr`.
 ```
@@ -290,7 +276,7 @@ Les principaux avantages de cette approche sont ses aspects automatisés et syst
 La présence d'une personne ne devient nécessaire que pour vérifier que la procédure a fonctionné correctement: c'est l'étape du contrôle de qualité (ou QC, pour "quality control").
 On va aussi tester la morphologie du cerveau à travers l'ensemble de la matière grise.
 D'un autre côté, cette technique comporte aussi un inconvénient important.
-En effet, le grand nombre de mesures générées pose un problème de _comparaisons multiples_ lorsque vient le temps de faire les analyses statistiques (voir le [Chapitre 9: Cartes statistiques](cartes-statistiques-chapitre)).
+En effet, le grand nombre de mesures générées pose un problème de _comparaisons multiples_ lorsque vient le temps de faire les analyses statistiques (voir le [Chapitre 9: Cartes statistiques](#cartes-statistiques-chapitre)).
 
 ### Segmentation
 ```{code-cell} ipython 3
@@ -298,7 +284,6 @@ En effet, le grand nombre de mesures générées pose un problème de _comparais
 # Importe les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 import seaborn as sns
 
 import warnings
@@ -377,13 +362,18 @@ plot_stat_map(mni.csf,
               black_bg=True,
               title='Liquide céphalo-rachidien'
               )
-
-from myst_nb import glue
-glue("mni-segmentation-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/mni-segmentation-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} mni-segmentation-fig
-:figwidth: 600px
-:name: mni-segmentation-fig
+```{figure} morphometrie/mni-segmentation-fig.png
+---
+name: mni-segmentation-fig
+width: 600px
+---
 Segmentation probabiliste des principaux types de tissus et distribution des valeurs pondérées en T1 dans les voxels "purs" (probabilité supérieure à 80% pour un type de tissu donné).
 L'image pondérée en T1 ainsi que les segmentations correspondent à l'espace stéréotaxique MNI152 {cite:p}`Fonov2011-xr`.
 ```
@@ -411,7 +401,6 @@ On appelle ce genre d'effet de mélange de noir et de blanc un volume partiel (u
 # Importe les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 import seaborn as sns
 
 import warnings
@@ -443,12 +432,18 @@ for num, fwhm in enumerate(list_fwhm):
               title=f'FWHM={fwhm}',
               vmax=1)
 
-from myst_nb import glue
-glue("smoothing-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/smoothing-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} smoothing-fig
-:figwidth: 600px
-:name: smoothing-fig
+```{figure} morphometrie/smoothing-fig.png
+---
+name: smoothing-fig
+width: 600px
+---
 Illustration de l'impact du lissage sur une carte de densité de matière grise en VBM.
 À mesure que le paramètre `FWHM` augmente, la mesure de la densité représente une région entourant le voxel de plus en plus grande.
 Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) à partir d'un jeu de données public appelé template MNI152 2009 {cite:p}`Fonov2011-xr` (cliquer sur + pour voir le code).
@@ -521,12 +516,19 @@ title = ('Negative $\\log_{10}$ p-values'
 display.title(title, y=1.2)
 plt.show()
 
-from myst_nb import glue
-glue("vbm-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/vbm-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} vbm-fig
-:figwidth: 600px
-:name: vbm-fig
+
+```{figure} morphometrie/vbm-fig.png
+---
+name: vbm-fig
+width: 600px
+---
 Régression linéaire en VBM.
 On teste ici l'effet de l'âge sur un groupe (N=50) de participants de la base de données OASIS.
 La significativité $-\log_{10}(p)$ de l'effet de l'âge est superposée à une image de densité de matière grise.
@@ -633,12 +635,19 @@ plot_surf_stat_map(fsaverage.white_right, texture, hemi='right', view='lateral',
                             threshold=0.5, bg_map=fsaverage.sulc_right,
                             figure=fig)
 
-from myst_nb import glue
-glue("surf-stat-fig", fig, display=False)
+fig.savefig(
+  "morphometrie/surf-stat-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} surf-stat-fig
-:figwidth: 700px
-:name: surf-stat-fig
+
+```{figure} morphometrie/surf-stat-fig.png
+---
+name: surf-stat-fig
+width: 700px
+---
 Projection de la carte statistique présentée à la {numref}`vbm-fig` sur l'atlas de surface corticale `fsaverage`. Cette figure est adaptée d'un tutoriel [Nilearn](https://nilearn.github.io/modules/generated/nilearn.plotting.plot_surf_stat_map.html).
 ```
 
@@ -729,3 +738,22 @@ Les questions suivantes requièrent des réponses à développement court.
  - Les régions d'intérêt (ROI) sont-elles définies? Si oui, de quelle façon? Avec quel atlas? Combien y en a-t-il?
  - Quelles mesures morphologiques sont utilisées pour chaque région?
 ```
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+:::{grid-item}
+![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
+[Eddy Fortier](https://github.com/e-fortier)
+🤔👀
+:::
+:::{grid-item}
+![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
+[Marie-Eve Picard](https://github.com/me-pic)
+👀
+:::
+::::
