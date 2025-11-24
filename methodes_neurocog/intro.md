@@ -11,7 +11,14 @@ kernelspec:
 ---
 
 # Introduction
-
+```{figure} site_logo.png
+---
+name: logo-fig
+width: 200px
+align: left
+---
+Logo du livre, tiré du site <a href="https://www.vecteezy.com/free-vector/brain">Brain Vectors by Vecteezy</a>
+```
 Ce livre, "Méthodes en neurosciences cognitives", présente les principales techniques de neuroimagerie utilisées pour étudier la cognition chez l'humain (et l'animal) et disposant d'une bonne résolution spatiale:
  * résonance magnétique (anatomique, fonctionnelle, et de diffusion),
  * tomographie par émission de positrons,
@@ -20,7 +27,7 @@ Ce livre, "Méthodes en neurosciences cognitives", présente les principales tec
 Ce livre est une entrée en matière et est destiné à des lecteurs qui découvrent ces méthodes pour la première fois. Ce livre vous fournira des connaissances théoriques sur les bases physiques et physiologiques de ces techniques de neuroimagerie. De plus, il propose une introduction aux principales techniques de traitement d’image et d’analyse statistique qui leur sont associées. Chaque chapitre comporte une série d'exercices qui incluent des exemples d'applications dans le cadre de projets de recherche en neurosciences cognitives.
 
 ```{warning}
-L'objectif de cet ouvrage n'est pas d'être un outil de référence de type "ouvrage spécialiste" qui explique tous les détails spécifiques liés à une technique donnée. Le but de ce livre est plutôt de présenter un survol de l'ensemble des techniques les plus conventionnelles en neuroscience cognitive de manière concise, pour que les lecteurs puissent en apprécier les forces et faiblesses, ainsi que comprendre comment choisir la technique la plus adaptée à un type de recherche spécifique.
+Le but de ce livre est d'introduire l'ensemble des techniques les plus conventionnelles en neuroscience cognitive de manière concise, pour que les lecteurs puissent en apprécier les forces et faiblesses, ainsi que comprendre comment choisir la technique la plus adaptée à un type de recherche spécifique. Il ne s'agit pas d'un ouvrage spécialisé dans une technique qui comprend l'ensemble des notions nécessaires pour utiliser cette technique de manière autonome.
 ```
 
 ## Contribuer
@@ -33,7 +40,6 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
  * La librairie [Dipy](https://dipy.org), notamment pour la partie sur l'IRM de diffusion.
  * La librairie [MNE python](https://mne.tools/stable/index.html) est utilisée dans le chapitre portant sur l'imagerie optique.
  * Les visualisations d'images cérébrales utilisées dans le cours proviennent en partie de jeux de données publiques. L'origine des données est précisée dans la description de chacune des figures.
- * Le logo provient du site <a href="https://www.vecteezy.com/free-vector/brain">Brain Vectors by Vecteezy</a>
  * Certaines images du livre ont été obtenues sous droits illimités pour diffusion web et limités pour impression (500k copies) via [shutterstock](https://www.shutterstock.com) par L. Bellec.
 
  Les auteurs sont très reconnaissants pour l'énorme travail et la générosité des communautés qui créent et maintiennent tous ces projets!

@@ -24,4 +24,4 @@ site:
   template: book-theme
   options:
      favicon: favicon.ico
-     logo: site_logo.png
+     logo: methodes_neurocog/site_logo.png
