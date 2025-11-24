@@ -101,7 +101,7 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
  :::{grid-item}
  ![Andréanne Proulx](https://avatars.githubusercontent.com/u/65092948?v=4?s=100)
  [Andréanne Proulx](https://github.com/anproulx)
- 🤔
+ 🤔👀
  :::
 
  ::::
