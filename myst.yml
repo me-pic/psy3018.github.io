@@ -9,7 +9,11 @@ project:
   github: https://github.com/methodes-cogneuro/methodes-cogneuro.github.io
   toc:
     - file: methodes_neurocog/intro.md
+    - file: methodes_neurocog/cartes_cerebrales.md
+    - file: methodes_neurocog/irm.md
+    - file: methodes_neurocog/morphometrie.md
     - file: methodes_neurocog/irm_fonctionnelle.md
+    - file: methodes_neurocog/connectivite.md
 
 site:
   template: book-theme

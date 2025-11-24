@@ -70,7 +70,7 @@ La **volumétrie manuelle** consiste à délimiter visuellement une aire céréb
 Cette approche nécessite du temps, car le contour des structures d'intérêt doit être dessiné à la main sur chaque coupe d'IRM.
 On commence d'abord par segmenter une structure dans un premier plan de coupe (par exemple, dans le plan axial), puis il faudra aller corriger cette segmentation dans les autres plans (par exemple, dans le plan sagittal, puis dans le plan coronal).
 
-> Pour un rappel concernant les différents types de coupes du cerveau, veuillez vous référer au [Chapitre 1: Cartes cérébrales](<coupes-tip>).
+> Pour un rappel concernant les différents types de coupes du cerveau, veuillez vous référer au [Chapitre 1: Cartes cérébrales](#coupes-tip).
 
 Afin de déterminer où une région cérébrale se situe, ce type d'approche nécessite également un protocole de segmentation avec des critères anatomiques clairs.
 Pour certaines structures, comme pour l'hippocampe, il existe des protocoles détaillés (par exemple: {cite:p}`Wisse2017-ff`).
