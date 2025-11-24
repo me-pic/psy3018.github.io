@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
+    format_name: myst  
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,32 +12,7 @@ kernelspec:
 (tep-chapitre)=
 # Tomographie par émission de positrons
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/sangfrois">
-        <img src="https://avatars.githubusercontent.com/u/38385719?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>François Lespinasse</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Code">💻</a>
-        <a title="Exercices">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 La [tomographie par émission de positrons](https://fr.wikipedia.org/wiki/Tomographie_par_%C3%A9mission_de_positons) est une technique d'imagerie qui permet de cibler de nombreuses caractéristiques du cerveau, aussi bien au niveau structurel que fonctionnel. Couplée avec un radiotraceur de Fluorodésoxyglucose (FDG), la TEP est couramment utilisée pour cartographier l'activité du cerveau au travers de différentes conditions expérimentales. Avec d'autres traceurs, elle permet de cartographier les dépôts de protéines anormales, ou bien encore la présence de différents récepteurs de neurotransmetteurs.
 
 ```{figure} tep/tep.jpg
@@ -48,7 +20,7 @@ La [tomographie par émission de positrons](https://fr.wikipedia.org/wiki/Tomogr
 width: 600px
 name: tep-scanner-fig
 ---
-Scanneur TEP. Image par [Jejecam](https://commons.wikimedia.org/wiki/User:Jejecam) tirée de [wikipedia](https://fr.wikipedia.org/wiki/Tomographie_par_%C3%A9mission_de_positons#/media/Fichier:TEP-CT_2009.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
+Scanneur TEP. Image par [Jejecam](https://commons.wikimedia.org/wiki/User:Jejecam) tirée de [wikipedia](https://commons.wikimedia.org/wiki/File:TEP-CT_2009.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
 ```
 
 Les objectifs spécifiques du cours sont:
@@ -159,7 +131,7 @@ Une fois l'isotope produit, il peut être nécessaire d'effectuer des réactions
 width: 500px
 name: injection-tep-fig
 ---
-Injecteur plombé permettant de protéger l'opérateur TEP des radiations émises par le radiotraceur. Image par [JeJecam](https://commons.wikimedia.org/wiki/User:Jejecam) tirée de [wikipedia](https://fr.wikipedia.org/wiki/Tomographie_par_%C3%A9mission_de_positons#/media/Fichier:Injecteur_plombe.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
+Injecteur plombé permettant de protéger l'opérateur TEP des radiations émises par le radiotraceur. Image par [JeJecam](https://commons.wikimedia.org/wiki/User:Jejecam) tirée de [wikipedia](https://commons.wikimedia.org/wiki/File:Injecteur_plombe.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
 ```
 Une fois produite, la dose de radiotraceur doit être acheminée rapidement pour être injectée au participant de recherche. La demi-vie du FDG est d'environ deux heures, ce qui permet de produire le radiotraceur et de l'utiliser sur des sites différents, si nécessaire. Durant le transport, la dose de radiotraceurs émet continuellement des radiations, et il est nécessaire d'utiliser des équipements de protection ({numref}`injection-tep-fig`).
 
@@ -169,7 +141,7 @@ Une fois produite, la dose de radiotraceur doit être acheminée rapidement pour
 width: 800px
 name: coincidence-fig
 ---
-Injecteur plombé permettant de protéger l'opérateur TEP des radiations émises par le radiotraceur. Image par [Jens Maus](https://github.com/jens-maus) tirée de [wikipedia](https://fr.wikipedia.org/wiki/Tomographie_par_%C3%A9mission_de_positons#/media/Fichier:PET-schema.png) sous licence [domaine public](https://fr.wikipedia.org/wiki/Domaine_public_(propri%C3%A9t%C3%A9_intellectuelle)).
+Injecteur plombé permettant de protéger l'opérateur TEP des radiations émises par le radiotraceur. Image par [Jens Maus](https://github.com/jens-maus) tirée de [wikipedia](https://commons.wikimedia.org/wiki/File:PET-schema.png) sous licence [domaine public](https://fr.wikipedia.org/wiki/Domaine_public_(propri%C3%A9t%C3%A9_intellectuelle)).
 ```
 Une fois le radiotraceur injecté et accumulé sur la cible, la radioactivité est émise par les parties du cerveau que l'on souhaite étudier. Pour chaque évènement radiactif, les deux rayons gamma sortent de la boîte crânienne dans des directions diamétralement opposées. Le scanner TEP est muni de capteurs (ou de caméras, car ces capteurs mesurent des photons) disposés en cercle autour de la tête du participant ({numref}`coincidence-fig`). Comme les rayons gamma se déplacent à grande vitesse, ils viennent frapper deux caméras pratiquement au même moment (à quelques nanosecondes près). Cette arrivée simultanée, appelée **coincidence**, est détectée par le scanneur TEP. Il est possible possible de savoir qu'un événement radioactif a eu lieu sur la droite reliant les capteurs, et il est possible de calculer l'activité accumulée au cours du temps selon l'ensemble des droites possibles. Pour le FDG, il existe plusieurs millions d'événements radioactifs par minutes, et on effectue une mesure accumulée sur plusieurs dizaines de minutes. Mais ces mesures, appelées **projections**, ne correspondent pas (encore) à une image du cerveau.
 
@@ -179,7 +151,7 @@ Une fois le radiotraceur injecté et accumulé sur la cible, la radioactivité e
 width: 800px
 name: projection-fig
 ---
-Illustration de la construction de projections multiples d'une image 2D. Image par [Lucas VB](https://commons.wikimedia.org/wiki/User:LucasVB) tirée de [wikipedia](https://en.wikipedia.org/wiki/Radon_transform#/media/File:Radon_transform_sinogram.gif) sous licence [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en).
+Illustration de la construction de projections multiples d'une image 2D. Image par [Lucas VB](https://commons.wikimedia.org/wiki/User:LucasVB) tirée de [wikipedia](https://commons.wikimedia.org/wiki/File:Radon_transform_sinogram.gif) sous licence [CC0](https://creativecommons.org/publicdomain/zero/1.0/deed.en).
 ```
 La figure {numref}`projection-fig` illustre comment un object 2D peut être convertie en un série de projections. La tomographie est une opération qui consiste à reconstruire une image 3D du cerveau à partir de la combinaison des mesures prises par l'ensemble des caméras. Si l'on disposait de l'ensemble des projections possibles, on pourrait en théorie faire une reconstruction parfaite. En pratique, on est limité par la taille et le nombre des caméras du scaneur TEP. La figure ci dessous illustre une image simplifiée de coupe 2D du cerveau, le processus de projections multiples, et une reconstruction de l'image à partir des projections. Pour un appareil TEP humain, la résolution spatiale est de l'ordre de 4-7 mm.
 
@@ -222,16 +194,21 @@ ax3.set_title("Image reconstruite")
 ax3.imshow(reconstruction_fbp, cmap=plt.cm.Greys_r)
 fig.tight_layout()
 
-# Glue figure
-from myst_nb import glue
-glue("radon-fig", fig, display=False)
+fig.savefig(
+  "tep/radon-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} radon-fig
-:figwidth: 800px
-:name: radon-fig
-:align: center
- Une image 2D ressemblant à une coupe de cerveau (image de gauche). Représentation de la même image avec une série de projections correspondant à différentes positions dans l'espace et différents angles de projection (image du centre). Image reconstruite à partir des projections (image de droite). Cette figure est générée par du code python à l'aide de la librairie [scikit-image](https://scikit-image.org/docs/dev/auto_examples/transform/plot_radon_transform.html) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
+```{figure} tep/radon-fig.png
+---
+name: radon-fig
+align: center
+width: 800px
+---
+Une image 2D ressemblant à une coupe de cerveau (image de gauche). Représentation de la même image avec une série de projections correspondant à différentes positions dans l'espace et différents angles de projection (image du centre). Image reconstruite à partir des projections (image de droite). Cette figure est générée par du code python à l'aide de la librairie [scikit-image](https://scikit-image.org/docs/dev/auto_examples/transform/plot_radon_transform.html) (cliquer sur + pour voir le code), et est distribuée sous licence CC-BY.
 ```
 ## TEP en neurosciences cognitives
 Nous allons maintenant discuter de quelques radiotraceurs en TEP et de leur utilisation en neuroscience cognitive
@@ -267,7 +244,7 @@ Il existe de nombreux types de neurotransmetteurs dans le cerveau, qui joue un r
 width: 500px
 name: pib-fig
 ---
-Comparaison d'un scan TEP [$^{11}$**C**] PIB entre un sujet présentant une démence de type Alzheimer et un participant cognitivement sain. Les aires jaunes et rouge suggèrent l'accumulation de plaques A${\beta}$. Tiré de [wikipedia](https://en.wikipedia.org/wiki/Pittsburgh_compound_B#/media/File:PiB_PET_Images_AD.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
+Comparaison d'un scan TEP [$^{11}$**C**] PIB entre un sujet présentant une démence de type Alzheimer et un participant cognitivement sain. Les aires jaunes et rouge suggèrent l'accumulation de plaques A${\beta}$. Image par Klunkwe tirée de [wikipedia](https://commons.wikimedia.org/wiki/File:PiB_PET_Images_AD.jpg) sous licence [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0).
 ```
 L'amyloïde beta vient d'une protéine précurseur de l'amyloïde (APP). L'amyloïde beta peut s'agréger en plaques, notamment dans la maladie d'Alzheimer. Ces plaques bloquent les communication inter-neurones, puis elles déclenchent une réaction inflammatoire neuro-toxique qui accélère la dégénération des tissues cérébraux et contribuent au déclin des fonctions cognitives. Les plaques A${\beta}$ sont considérées comme un biomarqueur de la maladie d'Alzheimer. Des ligands ont été développés pour s'arrimer aux plaques A${\beta}$ tel que le composé [$^{11}$**C**] PIB. Précisons, cependant, que les plaques peuvent être présentes sans les symptômes cognitifs des troubles neurodégénératifs.
 
@@ -331,3 +308,25 @@ Pour répondre aux questions de cet exercice, lisez d'abord l'article *Tau patho
 - Quelle normalisation est appliquée aux cartes?
 - Quelles régions sont utilisées pour les analyses statistiques?
 ```
+
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+
+:::{grid-item}
+![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
+[Eddy Fortier](https://github.com/e-fortier)
+👀
+:::
+:::{grid-item}
+![Élisabeth Loranger](https://avatars.githubusercontent.com/u/90270981?v=4?s=100)
+[Élisabeth Loranger](https://github.com/elisabethloranger)
+🤔
+:::
+
+::::

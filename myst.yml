@@ -16,6 +16,7 @@ project:
     - file: methodes_neurocog/connectivite.md
     - file: methodes_neurocog/irm_diffusion.md
     - file: methodes_neurocog/imagerie_optique.md
+    - file: methodes_neurocog/tep.md
 
 site:
   template: book-theme
