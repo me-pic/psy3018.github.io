@@ -19,16 +19,19 @@ Notes de cours pour PSY3018 - Méthodes en neurosciences cognitives
 Si vous souhaitez développer et construire les notes de cours PSY3018, vous devez:
 
 - Clonez ce repository
-- Exécutez `pip install -r requirements.txt` (il est recommandé d'effectuer cette commande dans un environnement virtuel). 
-- (Recommendé) Effacez le répertoire `methodes_neurocog/_build/`
-- Exécutez `jb build methodes_neurocog/`
+- Exécutez `pip install -r requirements.txt` (il est recommandé d'effectuer cette commande dans un environnement virtuel).
+- (Recommendé) Effacez le répertoire `_build/`
+- On exporte l'URL de base à utiliser: `export BASE_URL="https://methodes-cogneuro.github.io"`
+- Exécutez les notebooks (uniquement si vous avez changé le code) `jupyter book build --execute`
+- Générer le site en html `jupyter book build --html`
 
-Une version statique html du livre sera générée dans `methodes_neurocog/_build/html/`.
+
+Une version statique html du livre sera générée dans `_build/html/`.
 
 ### Hosting the book
 
 The html version of the book is hosted on the `gh-pages` branch of this repo. Navigate to your local build and run,
-- `ghp-import -n -p -f methodes_neurocog/_build/html`
+- `ghp-import -n -p -f _build/html`
 
 This will automatically push your build to the `gh-pages` branch. More information on this hosting process can be found [here](https://jupyterbook.org/publish/gh-pages.html#manually-host-your-book-with-github-pages).
 
