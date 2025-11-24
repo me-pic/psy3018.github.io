@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -14,32 +11,8 @@ kernelspec:
 ---
 (irm-diffusion-chapitre)=
 # IRM de diffusion
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Exercices">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
 
-
-## Objectifs du cours
+## Objectifs 
 
 Ce cours a pour but de vous initier aux principes de l'imagerie par résonance magnétique de diffusion (IRMd). L'IRMd est une modalité de neuroimagerie qui nous permet d'étudier les **fibres de matière blanche**. Nous allons donc pouvoir examiner les connexions entre différentes régions, autant interhémisphériques (i.e., fibres de matière blanche voyageant d'un hémisphère à l'autre), qu'intrahémisphériques (i.e., fibres de matière blanche voyageant au sein d'un même hémisphère). Pour vous faire une idée concrète de ce à quoi ressemblent les fibres de matière blanche, vous pouvez regarder cette [vidéo](https://www.youtube.com/watch?v=PazaHElk6wc) présentant des dissections cérébrales, tirée du [cours de neuroanatomie fonctionnelle de UBC](http://www.neuroanatomy.ca/).
 
@@ -178,13 +151,18 @@ ax.set_ylabel('Y axis')
 ax.set_xlim([-2.5, 2.5])
 ax.set_ylim([-2.5, 2.5])
 
-# Glue the figure
-from myst_nb import glue
-glue("brownian-fig", fig, display=False)
+fig.savefig(
+  "irm_diffusion/brownian-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} brownian-fig
-:figwidth: 500px
-:name: "brownian-fig"
+```{figure} irm_diffusion/brownian-fig.png
+---
+name: brownian-fig
+width: 500px
+---
 Illustration de mouvement Brownien d'une molécule. Le point de départ est indiqué par un cercle rouge. Les trajectoires de couleurs correspondent à des marches aléatoires simulées suivant un mouvement Brownien. Les points bleus indiquent le point d'arrivée de chaque marche. Figure générée à l'aide de code Python par P. Bellec, sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).  Le code de simulation de mouvement Brownien est adapté du [Scipy Cookbook](https://scipy-cookbook.readthedocs.io/items/BrownianMotion.html) sous une [licence](https://github.com/scipy/scipy-cookbook/blob/master/LICENSE.txt) proche de MIT.
 ```
 
@@ -217,14 +195,18 @@ for num, speed in enumerate(list_speed):
     ax.set_ylabel('y')
     ax.set_zlabel('z')
 
-# Glue the figure
-from myst_nb import glue
-glue("anisotropic-fig", fig, display=False)  
+fig.savefig(
+  "irm_diffusion/anisotropic-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} anisotropic-fig
-:figwidth: 800px
-:name: "anisotropic-fig"
+```{figure} irm_diffusion/anisotropic-fig.png
+---
+name: anisotropic-fig
+width: 800px
+---
 Diffusion isotrope vs anisotrope. Chaque rond bleu représente le point d'arrivée d'une molécule d'eau selon une simulation de marche aléatoire avec un processus Brownien en 3D. Sur le graphe de gauche, la vitesse de diffusion des molécules d'eau est identique dans toutes les directions. Sur les graphes du milieu et de droite, la vitesse de diffusion est supérieure selon l'axe `x` que selon `y` et `z`. Figure générée à l'aide de code Python par P. Bellec, sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Le déplacement des molécules d'eau dans un milieu suit un mouvement Brownien. Si le milieu a des caractéristiques similaires dans toutes les directions, on parle de milieu **isotrope**. Le graphe de gauche de la {numref}`anisotropic-fig` représente l'ensemble des points d'arrivée de marches aléatoires dans un tel milieu isotrope. On remarque que les molécules se répartissent approximativement dans une sphère. Que se passe-t-il si la diffusion est plus rapide dans une direction donnée, par exemple l'axe `x`? On parle alors de milieu **anisotrope**. Sur le graphe du milieu, on voit que la forme remplie par les molécules s'allonge, et ressemble plus à un ballon de football américain qu'à une sphère (ou, en termes mathématiques, une ellipse). Plus la différence de vitesse de diffusion sur `x` grandit par rapport aux directions `y` et `z`, et plus la forme s'allonge (graphe de droite).
@@ -264,14 +246,19 @@ for num, vol in enumerate(list_vol):
     ax.flat[num].imshow(vol_slice.T, cmap='gray', interpolation='none',
                   origin='lower')
     ax.flat[num].set_title(f'direction {num+1}')
-# Glue the figure
-from myst_nb import glue
-glue("diffusion-direction-fig", fig1, display=False)  
-```
+fig1.savefig(
+  "irm_diffusion/diffusion-direction-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 
-```{glue:figure} diffusion-direction-fig
-:figwidth: 600px
-:name: "diffusion-direction-fig"
+```
+```{figure} irm_diffusion/diffusion-direction-fig.png
+---
+name: diffusion-direction-fig
+width: 600px
+---
 Volumes IRM pondérées en diffusion. Chaque coupe axiale représente un volume $T_2$ pondérée en diffusion pour une direction différente. Figure générée à l'aide de code Python par P. Bellec, sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). Le code est adapté d'un [tutorial](https://dipy.org/documentation/1.4.1./examples_built/denoise_patch2self/#example-denoise-patch2self) de la librairie [Dipy](https://dipy.org/), distribuée sous licence [BSD 3-Clause](https://github.com/dipy/dipy/blob/master/LICENSE).
 ```
 En IRM de diffusion, nous allons prendre des images selon plusieurs orientations de gradients. Ce sont des images pondérées en $T_2$, avec une pondération additionnelle correspondant à la diffusion de l'eau dans une direction correspondant à la direction du gradient appliqué. Pour un voxel donné, nous allons prendre des mesures dans différentes directions de gradients, qui vont nous dire si l'eau a beaucoup diffusé dans cette direction là, un peu comme les points bleus de la {numref}`dissection-fig`. Pour un volume IRMd, la valeur en un voxel nous dit si le point bleu est loin ou pas du point rouge, pour une direction que l'on a sélectionnée, voir {numref}`diffusion-direction-fig`
@@ -372,14 +359,19 @@ im = imageio.imread('tensor-zoom.png')
 ax.flat[1].imshow(im, interpolation='none')
 ax.flat[1].set_title('zoom')
 
-# Glue the figure
-from myst_nb import glue
-glue("tensor-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/tensor-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} tensor-fig
-:figwidth: 800px
-:name: "tensor-fig"
+```{figure} irm_diffusion/tensor-fig.png
+---
+name: tensor-fig
+width: 800px
+---
 Tenseurs de diffusion estimés sur une coupe axiale (gauche) et zoom sur une portion de la coupe (droite). La couleur de chaque tenseur code pour la direction principale de diffusion, ainsi que l'anisotropie fractionnelle de chaque tenseur. Les tenseurs les plus brillants sont fortement anisotropes, c'est-à-dire que la direction principale de diffusion est nettement plus forte que les directions transverses. Figure générée par du code python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/reconst_dti/#example-reconst-dti) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -410,13 +402,19 @@ ax.flat[1].set_title('carte de MD')
 ax.flat[2].imshow(RGB2, origin='lower')
 ax.flat[2].set_title('direction principale')
 
-# Glue the figure
-from myst_nb import glue
-glue("fa-md-rgb-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/fa-md-rgb-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} fa-md-rgb-fig
-:figwidth: 800px
-:name: "fa-md-rgb-fig"
+```{figure} irm_diffusion/fa-md-rgb-fig.png
+---
+name: fa-md-rgb-fig
+width: 800px
+---
  Cartes dérivées de tenseurs en IRM de diffusion: anisotropie fractionnelle (gauche), diffusivité moyenne (milieu) et direction principale du tenseur (droite). Pour la direction principale, l'axe médial-latéral (`x`) est codé en rouge, l'axe antérieur-postérieur (`y`) est codé en vert, et l'axe ventral-dorsal (`z`) est codé en bleu. Figure générée à l'aide de code Python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/reconst_fwdti/#example-reconst-fwdti) par P. Bellec, sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Il est possible de résumer certaines caractéristiques importantes des tenseurs de diffusion à l'aide d'une unique mesure, comme l'anisotropie fractionnelle et la diffusivité moyenne (voir définitions ci-dessous). On extrait donc une mesure par voxel, ce qui peut se représenter avec une carte cérébrale, voir {numref}`fa-md-rgb-fig`. Il est aussi possible de créer une image en couleurs, qui code pour la direction principale de diffusion.
@@ -457,9 +455,12 @@ ax.flat[1].imshow(np.squeeze(mask_wm[:, :, 0]).T, origin='lower',
                   cmap='gray')
 ax.flat[1].set_title('masque de la matière blanche')
 
-# Glue the figure
-from myst_nb import glue
-glue("mask-wm-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/mask-wm-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
 ```{code-cell} ipython 3
@@ -521,13 +522,18 @@ im = imageio.imread('irm_diffusion/fibers-zoom.png')
 ax.flat[1].imshow(im, interpolation='antialiased')
 ax.flat[1].set_title('zoom')
 
-# Glue the figure
-from myst_nb import glue
-glue("fibers-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/fibers-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} fibers-fig
-:figwidth: 800px
-:name: "fibers-fig"
+```{figure} irm_diffusion/fibers-fig.png
+---
+name: fibers-fig
+width: 800px
+---
 Fibres reconstruites par une approche streamline déterministe, qui consiste à tracer une fibre en suivant la direction principale de chaque tenseur de manière itérative, à partir de l'ensemble des points dans la matière blanche sur une coupe axiale (gauche) et zoom sur une portion de la coupe (droite). La couleur de chaque fibre code pour la direction principale de diffusion le long de la fibre. Figure générée par du code python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/tracking_introduction_eudx/#example-tracking-introduction-eudx) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -535,9 +541,11 @@ La [tractographie](https://fr.wikipedia.org/wiki/Tractographie) permet de tracer
 
 ```{admonition} Étapes de prétraitement
 Tout comme l'IRMf des étapes de recalage et de débruitage sont nécessaires pour préparer les données avant d'estimer les tenseurs et effectuer la tractographie. De nombreux paramètres sont à sélectionner pour la tractographie elle-même, qui peuvent influencer les résultats. Il est aussi nécessaire de sélectionner un masque de la matière blanche qui contient les points de départ pour la reconstruction de fibres, obtenu ici par seuillage d'une carte de FA.
-```{glue:figure} mask-wm-fig
-:figwidth: 500px
-:name: "mask-wm-fig"
+```{figure} irm_diffusion/mask-wm-fig.png
+---
+name: mask-wm-fig
+width: 500px
+---
 Carte d'anisotropite fractionnelle (gauche) et masque de la matière blanche obtenue par seuillage (droite). Figure générée par du code python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/tracking_introduction_eudx/#example-tracking-introduction-eudx) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -592,13 +600,18 @@ im = imageio.imread('irm_diffusion/fodf-zoom.png')
 ax.flat[1].imshow(im, interpolation='none')
 ax.flat[1].set_title('zoom')
 
-# Glue the figure
-from myst_nb import glue
-glue("fodf-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/fodf-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} fodf-fig
-:figwidth: 800px
-:name: "fodf-fig"
+```{figure} irm_diffusion/fodf-fig.png
+---
+name: fodf-fig
+width: 800px
+---
 Estimation de fODF sur une coupe axiale (gauche) et zoom sur une portion de la coupe (droite). Figure générée par du code python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/reconst_csd/#example-reconst-csd) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Avec une séquence HARDI, nous pouvons estimer une fonction de distribution des orientations de fibres (*fiber Orientation Distribution Function*, fODF) lorsqu'il y a des croisements de fibres perpendiculaires. Ceci nous permet d'estimer plusieurs tenseurs à l'intérieur d'un voxel et de surpasser certaines limites du tenseur de diffusion (DTI). Dans les zones à faible anisotropie nous observons plusieurs directions, comme des petits ballons dans chaque voxel, alors que nous observons une direction principale dans les fibres les plus importantes.
@@ -649,13 +662,19 @@ im = imageio.imread('fibers-zoom.png')
 ax.flat[1].imshow(im, interpolation='antialiased')
 ax.flat[1].set_title('zoom')
 
-# Glue the figure
-from myst_nb import glue
-glue("fodf-tracts-fig", fig1, display=False)
+fig1.savefig(
+  "irm_diffusion/fodf-tracts-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} fodf-tracts-fig
-:figwidth: 800px
-:name: "fodf-tracts-fig"
+```{figure} irm_diffusion/fodf-tracts-fig.png
+---
+name: fodf-tracts-fig
+width: 800px
+---
 Fibres reconstruites par une approche streamline déterministe avec une approche multi-tenseurs, qui permet de suivre plusieurs pics de diffusion à chaque voxel, à partir de l'ensemble des points dans la matière blanche sur une coupe axiale (gauche) et zoom sur une portion de la coupe (droite). Cette approche permet d'être plus robuste à la présence de croisement de fibres. Figure générée par du code python adapté d'un [tutoriel Dipy](https://dipy.org/documentation/1.4.1./examples_built/tracking_introduction_eudx/#example-tracking-introduction-eudx) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 La capacité de fODF de représenter plusieurs tenseurs à chaque voxel permet de reconstruire des fibres qui se croisent, comme il est apparent dans le zoom de la {numref}`fodf-tracts-fig`. Il est important de réaliser que les données utilisées pour générer {numref}`fibers-fig` et {numref}`fodf-tracts-fig` sont les mêmes, mais les fibres reconstruites sont très différentes! Les paramètres que l'on choisit pour la méthode de reconstruction vont aussi changer la forme et le nombre de fibres. La tractographie en IRMd n'est donc pas une science exacte, et les faux positifs (une fibre reconstruite qui n'existe pas vraiment) ainsi que les faux négatifs (une fibre que l'on ne reconstruit pas mais qui existe pourtant) sont très courants.
@@ -743,3 +762,18 @@ Les questions suivantes requièrent des réponses à développement court.
  - Quelle techniques de tractométrie ont été appliquées?
  - Quel est le résultat principal de l'étude?
 ```
+
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+:::{grid-item}
+![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
+[Marie-Eve Picard](https://github.com/me-pic)
+🤔👀
+:::
+::::

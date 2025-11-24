@@ -14,6 +14,8 @@ project:
     - file: methodes_neurocog/morphometrie.md
     - file: methodes_neurocog/irm_fonctionnelle.md
     - file: methodes_neurocog/connectivite.md
+    - file: methodes_neurocog/irm_diffusion.md
+    - file: methodes_neurocog/imagerie_optique.md
 
 site:
   template: book-theme

@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,61 +12,7 @@ kernelspec:
 (imagerie-optique-chapitre)=
 # Imagerie optique
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/Xanthylajoie">
-        <img src="https://avatars.githubusercontent.com/u/90349544?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Xanthy Lajoie</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/eddyfortier">
-        <img src="https://avatars.githubusercontent.com/u/72314243?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Eddy Fortier</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/sangfrois">
-        <img src="https://avatars.githubusercontent.com/u/38385719?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>François Lespinasse</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/anproulx">
-        <img src="https://avatars.githubusercontent.com/u/65092948?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Andréanne Proulx</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>    
-  </tr>
-</table>
-
+# Objectifs
 L'imagerie optique cérébrale, encore appelée spectroscopie proche infrarouge fonctionnelle, est une technique qui permet de mesurer les corrélats vasculaires de l'activité cérébrale, de manière assez similaire à l'IRMf. En revanche, elle repose sur un principe physique très différent: la diffusion et l'absorption de la lumière dans les tissus cérébraux. Ses limites et faiblesses sont aussi bien distinctes de l'IRMf.
 
 ```{figure} imagerie_optique/fnirs.jpg
@@ -77,7 +20,7 @@ L'imagerie optique cérébrale, encore appelée spectroscopie proche infrarouge 
 width: 600px
 name: fnirs-fig
 ---
-Système d'imagerie optique [NTS gowerlabs](https://www.gowerlabs.co.uk/nts-main). Image tirée de [wikipedia](https://en.wikipedia.org/wiki/Functional_near-infrared_spectroscopy#/media/File:Blonde_fNIRS_lady.jpg) sous licence [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).
+Système d'imagerie optique [NTS gowerlabs](https://www.gowerlabs.co.uk/nts). Image par Elisenicolegray tirée de [wikimedia](https://commons.wikimedia.org/wiki/File:Blonde_fNIRS_lady.jpg) sous licence [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).
 ```
 
 Les objectifs spécifiques de ce chapitre sont :
@@ -129,7 +72,7 @@ Seules les régions cérébrales proches du scalp pourront être mesurées préc
 ```
 
 ### Couplage neurovasculaire
-On a maintenant vu le principe physique qui nous permet de mesurer la concentration en HbO2 et HbRdans une région (superficielle) du cerveau. Le principe physiologique sur lequel repose l'imagerie optique est le même que pour l'IRMf, c'est-à-dire le **couplage neurovasculaire**. Vous pouvez vous référez à la [section](couplage-neurovasculaire-irmf-section) du chapitre sur l'IRMf pour plus de détails. Brièvement, l'activité neuronale, notamment post-synaptique, requiert une consommation d'oxygène au niveau des cellules gliales, immédiatement à proximité des neurones concernés. Cette consommation d'oxygène va entraîner une augmentation d'HbO2 et une diminution relative d'HbRà proximité des populations de neurones activés. C'est ce phénomène de couplage neurovasculaire qu'on mesure à la fois en IRMf et en imagerie optique.
+On a maintenant vu le principe physique qui nous permet de mesurer la concentration en HbO2 et HbRdans une région (superficielle) du cerveau. Le principe physiologique sur lequel repose l'imagerie optique est le même que pour l'IRMf, c'est-à-dire le **couplage neurovasculaire**. Vous pouvez vous référez à la [section](#couplage-neurovasculaire-irmf-section) du chapitre sur l'IRMf pour plus de détails. Brièvement, l'activité neuronale, notamment post-synaptique, requiert une consommation d'oxygène au niveau des cellules gliales, immédiatement à proximité des neurones concernés. Cette consommation d'oxygène va entraîner une augmentation d'HbO2 et une diminution relative d'HbRà proximité des populations de neurones activés. C'est ce phénomène de couplage neurovasculaire qu'on mesure à la fois en IRMf et en imagerie optique.
 
 ## Acquisition et traitement
 
@@ -224,15 +167,19 @@ im = imageio.imread("imagerie_optique/fnirs-tddr.png")
 ax.flat[1].imshow(im, interpolation='none')
 ax.flat[1].set_title('Après correction de mouvement')
 
-# Glue the figure
-from myst_nb import glue
-glue("fnirs-motion-fig", fig1, display=False)
+fig1.savefig(
+  "imagerie_optique/fnirs-motion-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} fnirs-motion-fig
-:figwidth: 800px
-:name: "fnirs-motion-fig"
- Corrections des artefacts de mouvement dans une acquisition d'imagerie optique. Figure générée par du code python adapté d'un [tutoriel MNE python](https://mne.tools/stable/auto_examples/preprocessing/fnirs_artifact_removal.html#sphx-glr-auto-examples-preprocessing-fnirs-artifact-removal-py) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+```{figure} imagerie_optique/fnirs-motion-fig.png
+---
+name: fnirs-motion-fig
+width: 800px
+---
+Corrections des artefacts de mouvement dans une acquisition d'imagerie optique. Figure générée par du code python adapté d'un [tutoriel MNE python](https://mne.tools/stable/auto_examples/preprocessing/fnirs_artifact_removal.html#sphx-glr-auto-examples-preprocessing-fnirs-artifact-removal-py) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Tout comme les données d'IRMf, les données d'imagerie optique sont sensibles au mouvement. Il est possible de tirer partie de l'excellente résolution d'acquisition de l'imagerie optique pour identifier des changements brusques dans le signal, indicateurs de mouvement. Ces changments brusques peuvent alors être corrigés, tel qu'illustré dans la {numref}`fnirs-motion-fig`.
 
@@ -268,15 +215,21 @@ im = imageio.imread("imagerie_optique/fnirs-filtered.png")
 ax.flat[1].imshow(im, interpolation='none')
 ax.flat[1].set_title('Après filtrage')
 
-# Glue the figure
-from myst_nb import glue
-glue("fnirs-filtrage-fig", fig1, display=False)
+fig1.savefig(
+  "imagerie_optique/fnirs-filtrage-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
 
-```{glue:figure} fnirs-filtrage-fig
-:figwidth: 800px
-:name: "fnirs-filtrage-fig"
- Filtrage des données HbO2 pour éliminer les dérives lentes et les fréquences cardiaques. Figure générée par du code python adapté d'un [tutoriel MNE python](https://mne.tools/stable/auto_tutorials/preprocessing/70_fnirs_processing.html#sphx-glr-auto-tutorials-preprocessing-70-fnirs-processing-py) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+```{figure} imagerie_optique/fnirs-filtrage-fig.png
+---
+name: fnirs-filtrage-fig
+width: 800px
+---
+Filtrage des données HbO2 pour éliminer les dérives lentes et les fréquences cardiaques. Figure générée par du code python adapté d'un [tutoriel MNE python](https://mne.tools/stable/auto_tutorials/preprocessing/70_fnirs_processing.html#sphx-glr-auto-tutorials-preprocessing-70-fnirs-processing-py) par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Un autre point commun avec l'IRMf est la présence de différentes sources de bruit, qui peuvent être réduites par des techniques de filtrage. Ces techniques sont plus efficaces en imagerie optique qu'en IRMf, car on dispose d'une meilleure résolution d'acquisition. Il est possible de supprimer les dérives lentes, comme on l'avait vu en IRMf, mais aussi d'éliminer les fréquences cardiaques, ce qui est difficile de faire en IRMf où le TR est généralement supérieur à 1 seconde.
 ## Application en neuroscience cognitive
@@ -336,14 +289,20 @@ plot_epochs = epochs['Droite'].average(picks='hbo').plot_joint(
     times=times, topomap_args=topomap_args)
 plot_epochs.set_dpi(400)
 
-from myst_nb import glue
-glue("fnirs-activation-fig", plot_epochs, display=False)
-```
+plot_epochs.savefig(
+  "imagerie_optique/fnirs-activation-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 
-```{glue:figure} fnirs-activation-fig
-:figwidth: 800px
-:name: fnirs-activation-fig
-:align: center
+```
+```{figure} imagerie_optique/fnirs-activation-fig.png
+---
+name: fnirs-activation-fig
+width: 800px
+align: center
+---
 Potentiel évoqué par un mouvement du doigt à `droite`, pour l'ensemble des capteurs. La mosaïque de couleurs à gauche du graphe indique la localisation spatiale correspondant à chaque courbe. Pour différents points temps, une carte topographique d'activation indique le niveau d'activité évoquée pour chaque source spatiale, et pour chaque instant. Cette figure est générée par du code python adapté d'un [tutoriel](https://mne.tools/stable/auto_tutorials/preprocessing/70_fnirs_processing.html#sphx-glr-auto-tutorials-preprocessing-70-fnirs-processing-py) de la librairie [MNE python](https://mne.tools) (cliquer sur + pour voir le code), et est distribuée par P. Bellec sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -420,3 +379,45 @@ Pour répondre aux questions de cet exercice, lisez d'abord l'article *Distinct 
 - Quel contrôle de qualité a été appliqué sur les données?
 - Comment est générée l'activité évoquée?
 ```
+
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+
+:::{grid-item}
+![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
+[Eddy Fortier](https://github.com/e-fortier)
+👀
+:::
+
+:::{grid-item}
+![Xanthy Lajoie](https://avatars.githubusercontent.com/u/90349544?v=4?s=100)
+[Xanthy Lajoie](https://github.com/Xanthylajoie)
+🤔👀
+:::
+
+:::{grid-item}
+![François Lespinasse](https://avatars.githubusercontent.com/u/38385719?v=4?s=100)
+[François Lespinasse](https://github.com/sangfrois)
+👀
+:::
+
+:::{grid-item}
+![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
+[Marie-Eve Picard](https://github.com/me-pic)
+👀
+:::
+
+:::{grid-item}
+![Andréanne Proulx](https://avatars.githubusercontent.com/u/65092948?v=4?s=100)
+[Andréanne Proulx](https://github.com/anproulx)
+👀
+:::
+
+::::
