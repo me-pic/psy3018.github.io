@@ -10,16 +10,6 @@ project:
   toc:
     - file: methodes_neurocog/intro.md
     - file: methodes_neurocog/cartes_cerebrales.md
-    - file: methodes_neurocog/irm.md
-    - file: methodes_neurocog/morphometrie.md
-    - file: methodes_neurocog/irm_fonctionnelle.md
-    - file: methodes_neurocog/connectivite.md
-    - file: methodes_neurocog/irm_diffusion.md
-    - file: methodes_neurocog/imagerie_optique.md
-    - file: methodes_neurocog/tep.md
-    - file: methodes_neurocog/cartes_statistiques.md
-    - file: methodes_neurocog/reproductibilite.md
-    - file: methodes_neurocog/references.md
 
 site:
   template: book-theme

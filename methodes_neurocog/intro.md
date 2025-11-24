@@ -1,6 +1,5 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
@@ -44,6 +43,7 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
 
  Le développement de ce livre a démarré afin de servir d'outil de référence pour le cours PSY3018, donné au baccalauréat en neurosciences cognitives de l'Université de Montréal. Les contributions générales sont présentées ci-dessous. Des contributions spécifiques sont listées au sein de chaque chapitre.
 
+ 🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
  ::::{grid}
  :::{grid-item}
  ![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
@@ -58,51 +58,50 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
 
  :::{grid-item}
  ![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
- [Eddy Fortier](https://github.com/eddyfortier)
+ [Eddy Fortier](https://github.com/e-fortier)
  🤔👀
  :::
 
  :::{grid-item}
  ![Dan J Gale](https://avatars.githubusercontent.com/u/14634382?v=4?s=100)
- ![Dan J Gale](https://github.com/danjgale)
+ [Dan J Gale](https://github.com/danjgale)
  🎨
  :::
 
  :::{grid-item}
  ![Samuel Guay](https://avatars.githubusercontent.com/u/30598330?v=4?s=100)
- ![Samuel Guay](https://github.com/SamGuay)
+ [Samuel Guay](https://github.com/SamGuay)
  👀
  :::
 
  :::{grid-item}
  ![Xanthy Lajoie](https://avatars.githubusercontent.com/u/90349544?v=4?s=100)
- ![Xanthy Lajoie](https://github.com/Xanthylajoie)
+ [Xanthy Lajoie](https://github.com/Xanthylajoie)
  🤔👀
  :::
 
  :::{grid-item}
  ![Élisabeth Loranger](https://avatars.githubusercontent.com/u/90270981?v=4?s=100)
- ![Élisabeth Loranger](https://github.com/elisabethloranger)
+ [Élisabeth Loranger](https://github.com/elisabethloranger)
  🤔
  :::
 
  :::{grid-item}
  ![François Lespinasse](https://avatars.githubusercontent.com/u/38385719?v=4?s=100)
- ![François Lespinasse](https://github.com/sangfrois)
+ [François Lespinasse](https://github.com/sangfrois)
  🤔👀
  :::
 
  :::{grid-item}
  ![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
- ![Marie-Eve Picard](https://github.com/me-pic)
+ [Marie-Eve Picard](https://github.com/me-pic)
  🤔👀
  :::
 
  :::{grid-item}
  ![Andréanne Proulx](https://avatars.githubusercontent.com/u/65092948?v=4?s=100)
- ![Andréanne Proulx](https://github.com/anproulx)
+ [Andréanne Proulx](https://github.com/anproulx)
  🤔
  :::
 
  ::::
- Notes contributions: 🤔 Contenu; 💻 Code; 🧩 Quizz; 👀 révision du texte.
