@@ -1,0 +1,27 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 2a886db3-a459-4e0c-8688-0b4a86c769bf
+  title: Méthodes en neurosciences cognitives
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/methodes-cogneuro/methodes-cogneuro.github.io
+  toc:
+    - file: methodes_neurocog/intro.md
+    - file: methodes_neurocog/cartes_cerebrales.md
+    - file: methodes_neurocog/irm.md
+    - file: methodes_neurocog/morphometrie.md
+    - file: methodes_neurocog/irm_fonctionnelle.md
+    - file: methodes_neurocog/connectivite.md
+    - file: methodes_neurocog/irm_diffusion.md
+    - file: methodes_neurocog/imagerie_optique.md
+    - file: methodes_neurocog/tep.md
+    - file: methodes_neurocog/cartes_statistiques.md
+    - file: methodes_neurocog/reproductibilite.md
+
+site:
+  template: book-theme
+  options:
+     favicon: favicon.ico
+     logo: site_logo.png

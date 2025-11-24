@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,48 +12,17 @@ kernelspec:
 (irmf-chapitre)=
 # IRM fonctionnelle
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/anproulx">
-        <img src="https://avatars.githubusercontent.com/u/65092948?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Andréanne Proulx</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/danjgale">
-        <img src="https://avatars.githubusercontent.com/u/14634382?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Dan J Gale</b></sub>
-      </a>
-      <br />
-        <a title="Figure">🎨</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 
 [L'imagerie par résonnance magnétique fonctionnelle](https://fr.wikipedia.org/wiki/Imagerie_par_r%C3%A9sonance_magn%C3%A9tique_fonctionnelle)
 est une modalité d'imagerie qui permet de mesurer indirectement l'activité cérébrale. L'IRMf acquiert des images du cerveau en action en relation avec différentes conditions expérimentales, ayant été conçues pour isoler des processus cognitifs spécifiques. L'IRMf permet donc de cartographier l'organisation fonctionnelle du cerveau, dans différents contextes cognitifs.
 
 ```{figure} irm_fonctionnelle/irmf.jpg
 ---
-width: 600px
+width: 450px
 name: irmf-ecran-fig
 ---
-Les images d'IRMf permettent d'observer l'activation cérébrale, tiré de [wikipedia](https://fr.wikipedia.org/wiki/Imagerie_par_r%C3%A9sonance_magn%C3%A9tique_fonctionnelle#/media/Fichier:Researcher-test.jpg).
+Les images d'IRMf permettent d'observer l'activation cérébrale, tiré de [wikipedia](https://commons.wikimedia.org/wiki/File:Researcher-test.jpg#/media/Fichier:Researcher-test.jpg).
 ```
 Les objectifs spécifiques du cours sont:
 - Comprendre les principes **physiques** et **physiologiques** du signal IRMf.
@@ -151,13 +117,17 @@ ax.set_title("Décours temporel d'un voxel")
 plt.xlabel("Temps(s)", fontsize = 10)
 plt.ylabel("Signal BOLD", fontsize= 10)
 
-from myst_nb import glue
-glue("voxel-timeseries-fig", fig, display=False)
+fig.savefig(
+  "irm_fonctionnelle/voxel-timeseries-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} voxel-timeseries-fig
-:figwidth: 800px
-:name: "voxel-timeseries-fig"
+```{figure} irm_fonctionnelle/voxel-timeseries-fig.png
+---
+name: voxel-timeseries-fig
+---
 Illustration d'un élément de volume (voxel), de taille 3 mm x 3 mm x 3 mm, et le décours temporel IRMf associé.
 ```
 
@@ -254,14 +224,17 @@ signal, name = compute_regressor(
 plt.fill(frame_times, stim, 'b', alpha=.5, label='stimulus')
 plt.plot(frame_times, signal.T[0], 'r', label=name[0])
 
-# Glue the figure
-from myst_nb import glue
-glue("hrf-fig", fig, display=False)
+fig.savefig(
+  "irm_fonctionnelle/hrf-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} hrf-fig
-:figwidth: 800px
-:name: "hrf-fig"
+```{figure} irm_fonctionnelle/hrf-fig.png
+---
+name: hrf-fig
+---
 Réponse hémodynamique à une impulsion unitaire d'une durée de seconde, suivant le modèle proposé par Glover and coll. (1999) {cite:p}`Glover1999-cb`. Le code pour générer cette figure est adaptée d'un [tutoriel](https://nilearn.github.io/auto_examples/04_glm_first_level/plot_hrf.html#sphx-glr-auto-examples-04-glm-first-level-plot-hrf-py) Nilearn, et la figure est sous licence CC-BY.
 ```
 La figure qui suit montre la réponse hémodynamique attendue suite à une impulsion finie d'activation au temps 0, et de durée de 1 seconde. La réponse à ce type de stimulus permet de visualiser la réponse hémodynamique la plus largement utilisée, décrivant la relation maintenue entre l'activité neuronale (bleu) et le signal BOLD (rouge), en fonction du temps. L'axe `x` représente le temps, en secondes, et l'axe `y` le signal cérébral, exprimé en pourcentage du changement par rapport à une ligne de base. Les caractéristiques importantes de la fonction de réponse hémodynamique sont:
@@ -316,7 +289,7 @@ Différentes stratégies de modélisation peuvent être employées pour réduire
 
 ### Recalage
 
-Le recalage consiste à aligner une image à une image de référence. C'est une étape de prétraitement complétée avant les analyses statistiques de groupe, comme celles-ci présupposent qu'il y a une correspondance entre les voxels des images provenant de différents sujets. Nous avons déjà discuté du {ref}`recalage <registration-tip>` dans la section sur la [morphometrie](morphometrie). Nous allons voir que trois types de recalage sont utilisés en IRM fonctionnelle.
+Le recalage consiste à aligner une image à une image de référence. C'est une étape de prétraitement complétée avant les analyses statistiques de groupe, comme celles-ci présupposent qu'il y a une correspondance entre les voxels des images provenant de différents sujets. Nous avons déjà discuté du recalage dans la section sur la [morphometrie](morphometrie). Nous allons voir que trois types de recalage sont utilisés en IRM fonctionnelle.
 
 #### Recalage du mouvement
 ```{figure} ./irm_fonctionnelle/mouvement-fig.png
@@ -354,7 +327,6 @@ Pour les comparaisons inter-individuelles ou les analyses statistiques de groupe
 # Importe les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 import seaborn as sns
 
 import warnings
@@ -391,14 +363,21 @@ for num, fwhm in enumerate(list_fwhm):
               axes=ax_plot,
               black_bg=True,
               title=f'FWHM={fwhm}',
+              cmap='turbo',
               vmax=1500)
 
-from myst_nb import glue
-glue("smoothing-fmri-fig", fig, display=False)
+fig.savefig(
+  "irm_fonctionnelle/smoothing-fmri-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} smoothing-fmri-fig
-:figwidth: 600px
-:name: smoothing-fmri-fig
+```{figure} irm_fonctionnelle/smoothing-fmri-fig.png
+---
+name: smoothing-fmri-fig
+width: 600px
+---
 Illustration de l'impact du lissage sur un volume BOLD.
 À mesure que le paramètre `FWHM` augmente, la mesure en un voxel représente la moyenne dans un voisinage spatial de plus en plus grand.
 Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) à partir du jeu de données `haxby` (cliquer sur + pour voir le code). La figure est sous licence CC-BY.
@@ -411,7 +390,6 @@ Nous revenons ici sur une étape de prétraitement que nous avons déjà abordé
 # Importe les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 import seaborn as sns
 
 import warnings
@@ -473,12 +451,18 @@ for label_idx in range(3):
 ax.legend(loc=2)
 ax.set_title("Après correction des dérives lentes")
 
-from myst_nb import glue
-glue("detrending-fmri-fig", fig, display=False)
+fig.savefig(
+  "irm_fonctionnelle/detrending-fmri-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} detrending-fmri-fig
-:figwidth: 600px
-:name: detrending-fmri-fig
+```{figure} irm_fonctionnelle/detrending-fmri-fig.png
+---
+name: detrending-fmri-fig
+width: 600px
+---
 On extrait les séries temporelles associées à l'atlas Harvard-Oxford avant (à gauche) et après (à droite) régression des dérives lentes.
 Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/06_manipulating_images/plot_nifti_labels_simple.html#sphx-glr-auto-examples-06-manipulating-images-plot-nifti-labels-simple-py) à partir du jeu de données `development_fmri` (cliquer sur + pour voir le code). La figure est sous licence CC-BY.
 ```
@@ -507,7 +491,7 @@ fig = plt.figure(figsize=(10,5))
 # load events
 events = pd.read_table(subject_data['events'])
 events['amplitude'] = 1
-events = events[events['trial_type']=='active']
+events = events[events['trial_type']=='listening']
 events = events.loc[:,['onset', 'duration', 'amplitude']].to_numpy().transpose()
 
 frame_times = np.linspace(4*7, 100*7, 100-4+1)
@@ -527,14 +511,19 @@ plt.plot(frame_times, response, 'r', label=name)
 plt.xlabel('temps (s)')
 plt.ylabel('BOLD signal (u.a.)')
 
-# Glue the figure
-from myst_nb import glue
-glue("hrf-auditory-fig", fig, display=False)
+fig.savefig(
+  "irm_fonctionnelle/hrf-auditory-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} hrf-auditory-fig
-:figwidth: 500px
-:name: "hrf-auditory-fig"
+```{figure} irm_fonctionnelle/hrf-auditory-fig.png
+---
+name: hrf-auditory-fig
+width: 500px
+---
 Illustration d'un paradigme auditif en blocs. En bleu: périodes de stimulations audio. En rouge: réponse cérébrale prédite avec le modèle de réponse linéaire invariante dans le temps, et une réponse unitaire suivant le modèle de Glover et al. (1999) {cite:p}`Glover1999-cb`. Le code pour générer cette figure est adapté d'un [tutoriel](https://nilearn.github.io/auto_examples/04_glm_first_level/plot_hrf.html#sphx-glr-auto-examples-04-glm-first-level-plot-hrf-py) Nilearn, et la figure est sous licence CC-BY.
 ```
 
@@ -586,7 +575,7 @@ fmri_glm = fmri_glm.fit(fmri_img, events)
 # Extract activation clusters
 from nilearn.reporting import get_clusters_table
 from nilearn import input_data
-z_map = fmri_glm.compute_contrast('active - rest')
+z_map = fmri_glm.compute_contrast('listening')
 table = get_clusters_table(z_map, stat_threshold=3.1,
                            cluster_threshold=20).set_index('Cluster ID', drop=True)
 
@@ -619,14 +608,18 @@ for i in range(0, 3):
 
 fig1.set_size_inches(24, 14)
 
-# Glue the figure
-from myst_nb import glue
-glue("auditory-fig", fig1, display=False)
+fig1.savefig(
+  "irm_fonctionnelle/auditory-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} auditory-fig
-:figwidth: 800px
-:name: "auditory-fig"
+```{figure} irm_fonctionnelle/auditory-fig.png
+---
+name: auditory-fig
+---
 Carte d'activation pour un paradigme en blocs auditifs. Les trois principaux pics d'activation ont été identifiés, et le signal est présenté pour chaque pic, superposé avec l'activité prédite par le modèle basé sur les stimuli auditifs. Notez comme la forme de la réponse est identique pour les trois voxels sélectionnés, mais que l'amplitude du modèle varie (elle est estimée par la régression). Le code pour générer cette figure est adapté d'un [tutoriel](https://nilearn.github.io/auto_examples/04_glm_first_level/plot_hrf.html#sphx-glr-auto-examples-04-glm-first-level-plot-hrf-py) Nilearn, et la figure est sous licence CC-BY.
 ```
 
@@ -709,3 +702,22 @@ Les questions suivantes requièrent des réponses à développement court.
  4. Quel type de tâche est utilisé?
  5. Quelles étapes de prétraitements ont été appliquées?
 ```
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+:::{grid-item}
+![Dan J Gale](https://avatars.githubusercontent.com/u/14634382?v=4?s=100)
+[Dan J Gale](https://github.com/danjgale)
+🎨
+:::
+:::{grid-item}
+![Andréanne Proulx](https://avatars.githubusercontent.com/u/65092948?v=4?s=100)
+[Andréanne Proulx](https://github.com/anproulx)
+🤔👀
+:::
+::::

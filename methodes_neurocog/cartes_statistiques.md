@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,36 +12,7 @@ kernelspec:
 (cartes-statistiques-chapitre)=
 # Cartes statistiques
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/elisabethloranger">
-        <img src="https://avatars.githubusercontent.com/u/90270981?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Élisabeth Loranger</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/eddyfortier">
-        <img src="https://avatars.githubusercontent.com/u/72314243?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Eddy Fortier</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 
 Dans ce chapitre, il sera question de l'utilisation du modèle de régression pour générer des cartes statistiques cérébrales de groupe. Les statistiques de groupe permettent de combiner les mesures du cerveau de plusieurs individus et ainsi de contraster des groupes (ex. groupe de personnes jeunes et groupe de personnes âgées) ou bien de tester l'association avec une variable continue (ex. l'âge).
 
@@ -115,12 +83,18 @@ ax = plt.subplot2grid((2, 5), (1, 3), colspan=2)
 sns.histplot(
     df["MG2"], ax=ax, binwidth=0.05, binrange=[0, 1], stat='frequency')
 
-from myst_nb import glue
-glue("vbm-distribution-fig", fig, display=False)
+fig.savefig(
+  "cartes_statistiques/vbm-distribution-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} vbm-distribution-fig
-:figwidth: 800px
-:name: vbm-distribution-fig
+```{figure} cartes_statistiques/vbm-distribution-fig.png
+---
+name: vbm-distribution-fig
+width: 800px
+---
 La position de deux voxels (illustrée à l'aide d'un cercle bleu (haut) et d'un cercle olive (bas)) est ici superposée sur des cartes de densité de matière grise pour différents sujets du jeu de données OASIS ([Marcus et al., 2010](https://dx.doi.org/10.1162%2Fjocn.2009.21407)). À droite, un histogramme représente la distribution de la densité de matière grise pour le voxel correspondant, à travers un échantillon de 100 sujets. Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_oasis.html#sphx-glr-auto-examples-05-glm-second-level-plot-oasis-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Les concepts présentés dans ce chapitre s’appliquent à la plupart des modalités d'imagerie vues dans le cours de façon plus ou moins identique. Afin de rendre les choses un peu plus concrètes, nous allons ici nous intéresser à une analyse morphométrique de type VBM (IRM structurelle). Cette analyse utilise le jeu de données OASIS ([Marcus et al., 2010](https://dx.doi.org/10.1162%2Fjocn.2009.21407)). Des cartes de densité de matière grise pour les données OASIS sont disponibles via la librairie [nilearn](https://nilearn.github.io/modules/generated/nilearn.datasets.fetch_oasis_vbm.html). Pour chaque voxel, on dispose d'une mesure locale de densité de matière grise qui varie entre 0 et 1. Comme toutes les images des 100 participants OASIS utilisés dans cet exemple ont été recalées dans un même espace stéréotaxique, chaque voxel est associé à une série de 100 mesures. Il s'agit de notre **variable dépendante**. On va par la suite chercher à expliquer les variations de cette mesure à travers les sujets à l'aide d'autres variables, appelées les **prédicteurs**. Pour notre exemple, nous allons démarrer avec l'âge des participants qui varie ici de 20 ans à 90 ans.
@@ -133,13 +107,18 @@ df2 = df.melt(id_vars=["age", "sexe"], value_vars=["MG1", "MG2"], value_name="MG
 fig = sns.lmplot(x="age", y="MG", data=df2, col='variable',
            ci=None, scatter_kws={"s": 50, "alpha": 1})
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("regression-vbm-fig", fig.fig, display=False)           
+fig.fig.savefig(
+  "cartes_statistiques/regression-vbm-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} regression-vbm-fig
-:figwidth: 800px
-:name: regression-vbm-fig
+```{figure} cartes_statistiques/regression-vbm-fig.png
+---
+name: regression-vbm-fig
+width: 800px
+---
 Exemple de régression linéaire où la variable dépendante est la densité de matière grise pour un voxel et le prédicteur est l'âge. Les valeurs de densité de matière grise proviennent de 100 sujets de la base de données OASIS ([Marcus et al., 2010](https://dx.doi.org/10.1162%2Fjocn.2009.21407)). Les deux voxels utilisés ici sont les mêmes que ceux représentés dans la {numref}`vbm-distribution-fig` (voxel bleu à gauche, voxel olive à droite). La régression linéaire est réalisée à l'aide de la libraire [seaborn](https://seaborn.pydata.org) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Le concept soutenant le modèle de régression est une équation, ou une sorte de loi, qui va tenter de prédire la variable dépendante (ici, la densité de matière grise) à partir de prédicteurs (par exemple, l'âge). Mais contrairement à une loi physique qui tente de représenter une dépendance exacte (jusqu'à un certain degré), la présente loi ne capture qu'une fraction de la variance de notre mesure. La loi va donc incorporer un certain bruit représentant toutes les sources de variabilité que l'on ne peut pas capturer avec notre relation. La relation mathématique va prendre la forme suivante:
@@ -184,22 +163,29 @@ fig = plt.figure(figsize=(24, 14))
 ax = plt.subplot2grid((2, 4), (0, 0), colspan=3)
 roi_img = plotting.plot_stat_map(
     beta0, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='intercept (b0)')
+    axes=ax, display_mode='ortho', black_bg=False, colorbar=True, title='intercept (b0)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((2, 4), (1, 0), colspan=3)
 roi_img = plotting.plot_stat_map(
     beta1, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='effet de l\'age (b1)')
+    axes=ax, display_mode='ortho', black_bg=False, colorbar=True, title='effet de l\'age (b1)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("b0-b1-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/b0-b1-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} b0-b1-fig
-:figwidth: 600px
-:name: b0-b1-fig
+
+```{figure} cartes_statistiques/b0-b1-fig.png
+---
+name: b0-b1-fig
+width: 600px
+---
 Cartes de paramètres statistiques dans une régression linéaire massivement univariée. Première ligne: intercept `b0`, deuxième ligne: effet linéaire de l'âge `b1`. Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_oasis.html#sphx-glr-auto-examples-05-glm-second-level-plot-oasis-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Pour l'instant, nous avons utilisé un modèle de régression pour deux voxels seulement. Mais une carte VBM peut inclure des centaines de milliers de voxels. Les logiciels de neuroimagerie permettent d'effectuer systématiquement une régression linéaire pour l'ensemble des voxels, simultanément. Dans ce cas, on estime deux paramètres pour chaque voxel: `b0` (l'intercept) et `b1` (l'effet de l'âge). On va donc générer deux cartes statistiques séparées (voir {numref}`b0-b1-fig`). Ces deux cartes récapitulent donc des milliers de modèles de régression différents. Comme les régressions effectuées à chaque voxel sont indépendantes les unes des autres, on parle de modèle univarié. L'autre option, le modèle multivarié, chercherait plutôt à combiner les valeurs obtenues à différents voxels. De plus, comme on fait un très grand nombre de régressions en même temps, on parle de régression **massivement univariée**.
@@ -224,13 +210,19 @@ fig = sns.jointplot(
     kind="scatter",
 )
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("age-sexe-fig", fig.fig, display=False)           
+fig.fig.savefig(
+  "cartes_statistiques/age-sexe-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-```{glue:figure} age-sexe-fig
-:figwidth: 600px
-:name: age-sexe-fig
+
+```{figure} cartes_statistiques/age-sexe-fig.png
+---
+name: age-sexe-fig
+width: 600px
+---
 Relation entre âge, sexe et densité de matière grise pour un voxel (le voxel de couleur bleu dans {numref}`vbm-distribution-fig`). Le graphique est réalisé à l'aide de la libraire [seaborn](https://seaborn.pydata.org) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -264,13 +256,19 @@ ax[4].set_ylabel('# sujet')
 plt.gca().invert_yaxis()
 plt.tight_layout()
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("design-matrix-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/design-matrix-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} design-matrix-fig
-:figwidth: 600px
-:name: design-matrix-fig
+```{figure} cartes_statistiques/design-matrix-fig.png
+---
+name: design-matrix-fig
+width: 600px
+---
 Variables pour une régression multiple. La variable dépendante est la densité de matière grise pour un voxel (MG, le voxel de couleur bleu dans {numref}`vbm-distribution-fig`). Les autres colonnes représentent les variations de l'âge, du sexe et de l'intercept à travers les sujets (variables prédictives). Les variables prédictives sont généralement représentées de manière plus compacte, sous la forme d'une image où la couleur de chaque pixel représente l'intensité du régresseur. Le graphique est adapté d'un [code python](https://dartbrains.org/content/GLM.html) produit par l'équipe Dartbrains, ainsi que d'un [tutoriel nilearn](https://nilearn.github.io/glm/first_level_model.html) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -303,28 +301,34 @@ fig = plt.figure(figsize=(24, 14))
 ax = plt.subplot2grid((2, 4), (0, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
     beta0, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='intercept (b0)')
+    axes=ax, black_bg=False, display_mode='ortho', colorbar=True, title='intercept (b0)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((2, 4), (0, 2), colspan=2)
 roi_img = plotting.plot_stat_map(
     beta1, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='effet de l\'age (b1)')
+    axes=ax, black_bg=False, display_mode='ortho', colorbar=True, title='effet de l\'age (b1)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((2, 4), (1, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
     beta2, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='effet du sexe (b2)')
+    axes=ax, black_bg=False, display_mode='ortho', colorbar=True, title='effet du sexe (b2)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("multi-regression-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/multi-regression-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} multi-regression-fig
-:figwidth: 800px
-:name: multi-regression-fig
+```{figure} cartes_statistiques/multi-regression-fig.png
+---
+name: multi-regression-fig
+width: 800px
+---
 Cartes de paramètres statistiques dans une régression linéaire multiple massivement univariée. Haut gauche: intercept `b0`, haut droite: effet linéaire de l'âge `b1`, bas gauche: effet linéaire du sexe `b2`. Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_oasis.html#sphx-glr-auto-examples-05-glm-second-level-plot-oasis-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
@@ -349,23 +353,29 @@ fig = plt.figure(figsize=(24, 6))
 ax = plt.subplot2grid((1, 4), (0, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
     z_score, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='t-test (âge)')
+    axes=ax, black_bg=True, display_mode='ortho', colorbar=True, title='t-test (âge)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((1, 4), (0, 2), colspan=2)
 roi_img = plotting.plot_stat_map(
     neg_log_pval, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='significativité (-log10(p))')
+    axes=ax, black_bg=True, display_mode='ortho', colorbar=True, title='significativité (-log10(p))')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("tmap-pval-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/tmap-pval-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} tmap-pval-fig
-:figwidth: 800px
-:name: tmap-pval-fig
- Tests statistiques sur la significativité de l'association entre densité de matière grise et âge. Test t de Student (haut) et log10(p) (bas). Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_second_level_one_sample_test.html#sphx-glr-auto-examples-05-glm-second-level-plot-second-level-one-sample-test-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+```{figure} cartes_statistiques/tmap-pval-fig.png
+---
+name: tmap-pval-fig
+width: 800px
+---
+Tests statistiques sur la significativité de l'association entre densité de matière grise et âge. Test t de Student (haut) et log10(p) (bas). Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_second_level_one_sample_test.html#sphx-glr-auto-examples-05-glm-second-level-plot-second-level-one-sample-test-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Une fois que l'on a estimé l'effet de certaines variables explicatives (par exemple, l'âge) sur notre variable dépendante (par exemple, la densité de matière grise), il est nécessaire de tester la **significativité** de cet effet. À cette fin, on utilise l'amplitude des résidus pour estimer la taille d'effet que l'on pourrait observer par chance, si uniquement ces résidus étaient présents. On en déduit un test `t` de Student, qui se comporte comme une [loi normale](https://fr.wikipedia.org/wiki/Loi_normale) quand le nombre de sujets est grand. Pour chaque voxel, on a donc une statistique `t` différente, et on peut calculer la probabilité `p` d'observer cette statistique sous l'**hypothèse nulle**, où l'effet de la variable explicative est exactement zéro.
 
@@ -400,23 +410,29 @@ fig = plt.figure(figsize=(24, 6))
 ax = plt.subplot2grid((1, 4), (0, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
     z_score_rand, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
-    axes=ax, display_mode='ortho', colorbar=True, title='t-test (H0)')
+    axes=ax, black_bg=True, display_mode='ortho', colorbar=True, title='t-test (H0)')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((1, 4), (0, 2), colspan=2)
 roi_img = plotting.plot_stat_map(
-    neg_log_pval_rand, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    neg_log_pval_rand, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='significativité H0 (-log10(p))')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("null-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/null-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} null-fig
-:figwidth: 800px
-:name: null-fig
- Tests statistiques sur la significativité de l'association entre densité de matière grise et âge, sous l'hypothèse nulle où il n'existe aucune association. Les données d'âge ont été permutées aléatoirement entre les sujets. Test t de Student (haut) et log10(p) (bas). Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_second_level_one_sample_test.html#sphx-glr-auto-examples-05-glm-second-level-plot-second-level-one-sample-test-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+```{figure} cartes_statistiques/null-fig.png
+---
+name: null-fig
+width: 800px
+---
+Tests statistiques sur la significativité de l'association entre densité de matière grise et âge, sous l'hypothèse nulle où il n'existe aucune association. Les données d'âge ont été permutées aléatoirement entre les sujets. Test t de Student (haut) et log10(p) (bas). Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_second_level_one_sample_test.html#sphx-glr-auto-examples-05-glm-second-level-plot-second-level-one-sample-test-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 Au coeur de l'interprétation de la valeur `p`, il y a ce qu'on appelle l'**hypothèse nulle**. Pour essayer de comprendre ce que cela veut dire, faisons une expérience. Nous allons recommencer toute la procédure d'estimation de l'effet de l'âge sur la densité de matière grise. Mais cette fois ci, au lieu d'utiliser l'âge réel des sujets, nous allons mélanger ces valeurs aléatoirement (on parle de [permutations](https://fr.wikipedia.org/wiki/Permutation)). La distribution des tests `t` et des valeurs `p` est présentée dans la {numref}`null-fig`. De manière frappante, les valeurs `t` sont beaucoup plus petites avec les valeurs d'âge aléatoires que lorsqu'on a fait l'analyse avec les vraies valeurs, mais certaines valeurs restent élevées. On a réalisé une expérience sous l'hypothèse nulle, où il n'existe aucune association avec l'âge. La valeur `p` nous indique la **fréquence** avec laquelle on trouvera des valeurs d'effet de l'âge plus élevées sous l'hypothèse nulle que dans l'échantillon original. Pour estimer cela directement, il faudrait recommencer l'expérience que l'on vient de faire avec des milliers de permutations! Mais il existe aussi des méthodes approximées plus rapides.
 
@@ -438,13 +454,13 @@ fig = plt.figure(figsize=(24, 18))
 
 ax = plt.subplot2grid((3, 4), (0, 2), colspan=2)
 roi_img = plotting.plot_stat_map(
-    z_score, threshold=p05_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score, threshold=p05_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test, p<0.05')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((3, 4), (1, 2), colspan=2)
 roi_img = plotting.plot_stat_map(
-    z_score, threshold=p001_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score, threshold=p001_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test, p<0.001')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
@@ -452,19 +468,19 @@ ax = plt.subplot2grid((3, 4), (2, 2), colspan=2)
 thresholded_map, threshold = threshold_stats_img(
     z_score, alpha=.05, height_control='bonferroni')
 roi_img = plotting.plot_stat_map(
-    z_score, threshold=threshold, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score, threshold=threshold, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test, p<0.05 corrigé')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((3, 4), (0, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
-    z_score_rand, threshold=p05_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score_rand, threshold=p05_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test (H0), p<0.05')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
 ax = plt.subplot2grid((3, 4), (1, 0), colspan=2)
 roi_img = plotting.plot_stat_map(
-    z_score_rand, threshold=p001_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score_rand, threshold=p001_uncorrected, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test (H0), p<0.001')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
@@ -472,18 +488,24 @@ ax = plt.subplot2grid((3, 4), (2, 0), colspan=2)
 thresholded_map_rand, threshold_rand = threshold_stats_img(
     z_score_rand, alpha=.05, height_control='bonferroni')
 roi_img = plotting.plot_stat_map(
-    z_score_rand, threshold=threshold_rand, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig,
+    z_score_rand, threshold=threshold_rand, bg_img=gray_matter_map_filenames[0], cut_coords=coords[1], figure=fig, black_bg=True,
     axes=ax, display_mode='ortho', colorbar=True, title='t-test (H0), p<0.05 corrigé')
 roi_img.add_markers([coords[1]], colors[1], 100)
 
-# On colle la figure dans le jupyter book
-from myst_nb import glue
-glue("threshold-fig", fig, display=False)           
+fig.savefig(
+  "cartes_statistiques/threshold-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
+
 ```
-```{glue:figure} threshold-fig
-:figwidth: 800px
-:name: threshold-fig
- Effet de différentes stratégies de seuillage sur l'association entre l'âge et la densité de matière grise. À gauche: données sous l'hypothèse nulle (valeurs d'âge permutées au travers des sujets). À droite: données originales. Ligne 1: seuil `p<0.05` non corrigé pour les comparaisons multiples; ligne 2: seuil `p<0.001` non corrigé pour les comparaisons multiples; seuil `p<0.05` corrigé pour les comparaisons multiples par l'approche de Bonferroni. Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_thresholding.html#sphx-glr-auto-examples-05-glm-second-level-plot-thresholding-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+```{figure} cartes_statistiques/threshold-fig.png
+---
+name: threshold-fig
+width: 800px
+---
+Effet de différentes stratégies de seuillage sur l'association entre l'âge et la densité de matière grise. À gauche: données sous l'hypothèse nulle (valeurs d'âge permutées au travers des sujets). À droite: données originales. Ligne 1: seuil `p<0.05` non corrigé pour les comparaisons multiples; ligne 2: seuil `p<0.001` non corrigé pour les comparaisons multiples; seuil `p<0.05` corrigé pour les comparaisons multiples par l'approche de Bonferroni. Cette figure est adaptée d'un tutoriel de la librairie [nilearn](https://nilearn.github.io/auto_examples/05_glm_second_level/plot_thresholding.html#sphx-glr-auto-examples-05-glm-second-level-plot-thresholding-py) (cliquer sur + pour voir le code). Cette figure est distribuée sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ```
 
 Maintenant que l'on a discuté de l'interprétation de la valeur `p`, on doit maintenant décider d'un seuil à appliquer sur les valeurs `p`. Si l'on utilise le seuil habituel `p<0.05`, cela signifie que pour 20 permutations, on détectera une association 1 fois (en moyenne) pour un voxel donné. Mais comme on a des milliers de voxels dans le cerveau, cela veut dire que l'on va détecter 5% du cerveau (en moyenne) pour chaque permutation! C'est ce que l'on observe (et même plus) dans la figure en haut à gauche {numref}`threshold-fig`. Il s'agit du **problème de comparaisons multiples**, et plus on fait de tests, plus ce problème est important.
@@ -510,7 +532,7 @@ En règle générale, on doit faire un compromis entre la résolution (notre cap
 
 ```{admonition} Exercice 1
 :class: note
-Vrai/faux. Le modèle de régression général peut être utilisé pour effectuer des statistiques de groupe pour les types de mesures suivantes… 
+Vrai/faux. Le modèle de régression général peut être utilisé pour effectuer des statistiques de groupe pour les types de mesures suivantes…
  1. IRMf
  2. IRM T1 (VBM)
  3. IRM T1 (volumétrie)
@@ -523,9 +545,9 @@ Vrai/faux. Le modèle de régression général peut être utilisé pour effectue
 ```{admonition} Exercice 2
 :class: note
 Vrai/faux. La situation suivante inclut un problème de comparaisons multiples en statistique:
- 1. On effectue de manière répétée des mesures du volume cérébral chez N=100 sujets jeunes et N=100 sujets âgés, puis on compare statistiquement la moyenne des deux groupes. 
+ 1. On effectue de manière répétée des mesures du volume cérébral chez N=100 sujets jeunes et N=100 sujets âgés, puis on compare statistiquement la moyenne des deux groupes.
  2. On répète un test statistique à chaque voxel dans une image du cerveau, par exemple.
- 3. On acquiert 300 volumes cérébraux chez un individu en IRMf. 
+ 3. On acquiert 300 volumes cérébraux chez un individu en IRMf.
  4. On a quatre sous-groupes, et on compare statistiquement chacune des trois paires possibles de sous-groupes, par exemple.
 ```
 
@@ -550,12 +572,12 @@ On classe les analyses en fonction du nombre de comparaisons multiples impliqué
  2. atlas > hippocampe
  3. atlas > FDG
  4. Réponses 1 et 2.
- 5. Réponses 1, 2 et 3. 
+ 5. Réponses 1, 2 et 3.
 ```
 
 ```{admonition} Exercice 5
 :class: note
-On souhaite comparer la connectivité au repos en IRMf à partir d’une région cible dans le cortex cingulaire postérieur entre deux groupes de sujets, jeunes vs âgés. On applique un modèle linéaire général à chaque voxel. 
+On souhaite comparer la connectivité au repos en IRMf à partir d’une région cible dans le cortex cingulaire postérieur entre deux groupes de sujets, jeunes vs âgés. On applique un modèle linéaire général à chaque voxel.
  * Décrivez les variables prédictives indispensables à inclure dans ce modèle.
  * Quelles autres variables vous semblent-elles importantes à inclure dans le modèle?
  * Est-ce que ces variables peuvent modifier la différence observée entre personnes jeunes et âgées?
@@ -570,4 +592,24 @@ Pour répondre aux questions de cet exercice, lisez d'abord l'article *Tau patho
 - Comment est-ce que les comparaisons multiples sont corrigées?
 ```
 
+## Contributeurs
 
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+
+:::{grid-item}
+![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
+[Eddy Fortier](https://github.com/e-fortier)
+👀
+:::
+:::{grid-item}
+![Élisabeth Loranger](https://avatars.githubusercontent.com/u/90270981?v=4?s=100)
+[Élisabeth Loranger](https://github.com/elisabethloranger)
+🤔
+:::
+
+::::

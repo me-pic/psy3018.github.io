@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,38 +12,7 @@ kernelspec:
 (irm-chapitre)=
 # Imagerie par résonance magnétique
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/jcohenadad">
-        <img src="https://avatars.githubusercontent.com/u/2482071?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Julien Cohen-Adad</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Lune bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Quizz">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 Ce cours a pour but de vous initier aux principes physiques de l'imagerie par résonance magnétique. Au courant de ce cours, nous allons aborder quatre principes fondamentaux de l'IRM:
  * La résonance magnétique
  * La relaxation : paramètres T1 et T2
@@ -216,7 +182,6 @@ warnings.filterwarnings("ignore")
 # Importer les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 
 # Initialise la figure
 fig = plt.figure(figsize=(15, 5))
@@ -254,12 +219,17 @@ ax_plot = plt.subplot2grid((1, 3), (0, 1), colspan=2)
 plot_anat(data_mri.t1, figure=fig, title="IRM pondérée en T1", axes=ax_plot,
     cut_coords=[-17, 0, 17])
 
-glue("relax-t1-fig", fig, display=False)
+fig.savefig(
+  "irm/relax-t1-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
-
-```{glue:figure} relax-t1-fig
-:figwidth: 800px
-:name: "relax-t1-fig"
+```{figure} irm/relax-t1-fig.png
+---
+name: relax-t1-fig
+---
 Relaxation longitudinale et contraste $T_1$. Image de gauche: croissance du champ magnétique selon l'axe $B_0$, appelé $M_{z}$. Notez que différents types de tissus présentent des courbes distinctes de relaxation longitudinale. Image de droite: une image générée par lecture au temps $TE$ (pondéré en $T_1$) présente un contraste entre les différents types de tissus. Cette figure est générée par du code python, cliquer sur + pour voir le code.
 ```
 
@@ -292,7 +262,6 @@ warnings.filterwarnings("ignore")
 # Importer les librairies nécessaires
 import matplotlib.pyplot as plt
 import numpy as np
-from myst_nb import glue
 
 # Initialise la figure
 fig = plt.figure(figsize=(15, 5))
@@ -330,12 +299,18 @@ ax_plot = plt.subplot2grid((1, 3), (0, 1), colspan=2)
 plot_anat(data_mri.t2, figure=fig, title="IRM pondérée en T2", axes=ax_plot,
     cut_coords=[-17, 0, 17])
 
-glue("relax-t2-fig", fig, display=False)
+fig.savefig(
+  "irm/relax-t2-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} relax-t2-fig
-:figwidth: 800px
-:name: "relax-t2-fig"
+```{figure} irm/relax-t2-fig.png
+---
+name: relax-t2-fig
+---
 Relaxation transverse et contraste $T_2$. Image de gauche: décroissance du champ magnétique selon l'axe $B_1$, appelé $M_{xy}$. Notez que différents types de tissus présentent des courbes distinctes de relaxation transverse. Image de droite: une image générée par lecture au temps $TE$ présente un contraste entre les différents types de tissus. Ce contraste est pour l'essentiel inversé par rapport au contraste $T_1$. Cette figure est générée par du code python, cliquer sur + pour voir le code.
 ```
 ```{admonition} $TE$
@@ -451,3 +426,23 @@ Pour répondre à cette question, lisez l'article de Shukla et collaborateurs, "
  4. Quel est le nom de la séquence utilisée pour l'acquisition structurelle?
  5. Quelle est la taille du champ de vue, exprimée en mm et dans les trois dimensions?
 ```
+
+## Contributeurs
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+:::{grid-item}
+![Julien Cohen-Adad](https://avatars.githubusercontent.com/u/2482071?v=4?s=100)
+[Julien Cohen-Adad](https://github.com/jcohenadad)
+👀
+:::
+:::{grid-item}
+![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
+[Marie-Eve Picard](https://github.com/me-pic)
+🤔
+:::
+::::

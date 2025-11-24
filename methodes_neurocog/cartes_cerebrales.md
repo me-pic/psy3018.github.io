@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,39 +12,7 @@ kernelspec:
 
 # Cartes cérébrales
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/pbellec">
-        <img src="https://avatars.githubusercontent.com/u/1670887?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Pierre bellec</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Code">💻</a>
-        <a title="Quizz">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/eddyfortier">
-        <img src="https://avatars.githubusercontent.com/u/72314243?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Eddy Fortier</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/SamGuay">
-        <img src="https://avatars.githubusercontent.com/u/30598330?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Samuel Guay</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>    
-  </tr>
-</table>
-
-## Objectifs du chapitre
+## Objectifs
 ```{figure} ./cartes_cerebrales/fig_cartes_cerebrales.png
 ---
 width: 800px
@@ -143,7 +108,6 @@ mni = fetch_icbm152_2009()
 
 # Visualise le volume cérébral
 import matplotlib.pyplot as plt
-from myst_nb import glue
 from nilearn.plotting import plot_anat
 
 fig = plt.figure(figsize=(12, 4))
@@ -153,15 +117,21 @@ plot_anat(
   cut_coords=[-17, 0, 17],
   title='IRM en contraste T1'
 )
-glue("t1-fig-intro", fig, display=False)
+fig.savefig(
+  "cartes_cerebrales/t1-fig-intro.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} t1-fig-intro
-:figwidth: 800px
-:name: "t1-fig-intro"
+```{figure} cartes_cerebrales/t1-fig-intro.png
+---
+name: t1-fig-intro
+---
 Un exemple d'IRM structurelle (ici avec un contraste dit T1), sur trois plans de coupes: coronal (gauche), sagital (milieu) et axial (droite). Voir l'astuce {ref}`Naviguer à travers les coupes du cerveau<coupes-tip>` pour une explication de ces termes. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) à partir d'un jeu de données public appelé template MNI152 2009 {cite:p}`Fonov2011-xr` (cliquer sur + pour voir le code).
 ```
-Le type d'image le plus couramment acquis avec un appareil d'IRM vise à caractériser la morphologie du cerveau. Comme on peut le voir dans la figure {ref}`ci-dessus <t1-fig>`, on distingue aisément certains éléments anatomiques:
+Le type d'image le plus couramment acquis avec un appareil d'IRM vise à caractériser la morphologie du cerveau. Comme on peut le voir dans la figure {ref}`ci-dessus <t1-fig-intro>`, on distingue aisément certains éléments anatomiques:
  * La **matière grise**, en périphérie du cortex, apparaît en gris foncé dans l'image. C'est là que les corps des neurones sont présents.
  * Il est aussi possible de distinguer la **matière blanche** (en gris clair) qui contient des paquets d'axones - c'est à dire les connexions entre les neurones.
  * Enfin, en **noir**, on peut voir des structures comme les ventricules, qui contiennent de l'eau, des nutriments, ainsi que des déchets métaboliques.
@@ -205,20 +175,26 @@ adhd = fetch_adhd(n_subjects=1)
 # Visualise le volume cérébral
 from nilearn.plotting import plot_img
 from nilearn.image import index_img
-from myst_nb import glue
 fig = plt.figure(figsize=(12, 4))
 plot_img(index_img(adhd.func[0], 0),
               bg_img=None,
               axes=fig.gca(),
               cut_coords=(36, -27, 66),
               black_bg=True,
+              cmap="turbo",
               title="un volume IRMf")
-glue("irmf-fig", fig, display=False)
+fig.savefig(
+  "cartes_cerebrales/irmf-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} irmf-fig
-:figwidth: 800px
-:name: "irmf-fig"
+```{figure} cartes_cerebrales/irmf-fig.png
+---
+name: irmf-fig
+---
 Exemple d'un unique volume dans une série IRMf. Le volume est représenté sur trois plans de coupes: coronal (gauche), sagittal (milieu) et axial (droite). Voir l'astuce {ref}`Naviguer à travers les coupes du cerveau<coupes-tip>` pour une explication de ces termes. Remarquez que la résolution du volume est bien moins élevée que pour l'{ref}`IRM anatomique <t1-fig-intro>`, et que l'on a beaucoup de mal à voir les détails de l'anatomie du cerveau. Cette figure est générée par du code python à l'aide de la librairie [nilearn](https://nilearn.github.io/) à partir d'un jeu de données public appelé ADHD200 {cite:p}`HD-200_Consortium2012-uv, BELLEC2017275` (cliquer sur + pour voir le code).
 ```
 
@@ -295,7 +271,6 @@ stat_img = motor_images.images[0]
 
 # Visualise le volume cérébral
 from nilearn.plotting import plot_stat_map
-from myst_nb import glue
 ax_plot = plt.subplot(1, 2, 2)
 plot_stat_map(stat_img,
               threshold=3,
@@ -303,12 +278,18 @@ plot_stat_map(stat_img,
               title="carte d'activation motrice",
               cut_coords=[36, -27, 66]
               )
-glue("regression-fig", fig, display=False)
+fig.savefig(
+  "cartes_cerebrales/regression-fig.png",
+  dpi=300,
+  bbox_inches="tight",
+  pad_inches=0
+)
 ```
 
-```{glue:figure} regression-fig
-:figwidth: 800px
-:name: "regression-fig"
+```{figure} cartes_cerebrales/regression-fig.png
+---
+name: regression-fig
+---
 Gauche: illustration d'une régression linéaire entre une variable indépendante sur l'axe des x (aussi appelé facteur d'explication) et une variable dépendante sur l'axe des y. La droite représente la meilleure relation linéaire entre x et y et l'intervalle de confiance statistique est également indiqué. Droite: un modèle de régression est appliqué à chaque voxel pour générer une carte cérébrale statistique. Ici, la carte statistique correspond aux changements d'activation IRMf lors d'un mouvement de la main. La figure de régression est adaptée de ce [tutoriel seaborn](https://seaborn.pydata.org/tutorial/regression.html) à l'aide du jeu de données `tips`. La carte statistique est visualisée grâce à ce [tutoriel nilearn](https://nilearn.github.io/auto_examples/01_plotting/plot_demo_plotting.html#sphx-glr-auto-examples-01-plotting-plot-demo-plotting-py) et une carte d'activité motrice distribuée via [NeuroVault](https://neurovault.org/). Cliquez sur + pour voir le code.
 ```
 
@@ -364,3 +345,23 @@ Un participant à une étude a souffert d’un accident ayant laissé des débri
 :class: note
 On souhaite mesurer la réponse du cortex moteur à une activation motrice de manìère longitudinale chez un participant athlète. Plus spécifiquement, on effectue une acquisition en imagerie fonctionnelle toutes les deux semaines pendant trois mois, juste après un match de hockey. Proposez une méthode d’imagerie adaptée. Justifiez votre choix en citant une force de la technique, **spécifique à ce contexte**. Identifiez une limitation de cette technique.
 ```
+## Contributeurs
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 🤔💻🧩👀
+:::
+
+:::{grid-item}
+![Eddy Fortier](https://avatars.githubusercontent.com/u/72314243?v=4?s=100)
+[Eddy Fortier](https://github.com/e-fortier)
+👀
+:::
+
+:::{grid-item}
+![Samuel Guay](https://avatars.githubusercontent.com/u/30598330?v=4?s=100)
+[Samuel Guay](https://github.com/SamGuay)
+👀
+:::
+::::
