@@ -1,12 +1,9 @@
 ---
 jupytext:
-  cell_metadata_filter: -all
   formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.10.3
 kernelspec:
   display_name: Python 3
   language: python
@@ -15,35 +12,7 @@ kernelspec:
 (impacts-env-chapitre)=
 # Impacts environnementaux
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/me-pic">
-        <img src="https://avatars.githubusercontent.com/u/77584086?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Marie-Eve Picard</b></sub>
-      </a>
-      <br />
-        <a title="Contenu">🤔</a>
-        <a title="Exercices">⚠️</a>
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <br /><sub><b>Aline Moussard</b></sub>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/dylansutterlin">
-        <img src="https://avatars.githubusercontent.com/u/70554831?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Dylan Sutterlin Guindon</b></sub>
-      </a>
-      <br />
-        <a title="Révision du texte">👀</a>
-    </td>
-  </tr>
-</table>
-
-## Objectifs du cours
+## Objectifs
 
 Tout au long de ce cours, nous avons discuté de différentes techniques de neuroimagerie pour étudier les variations structurelles et fonctionnelles cérébrales, ainsi que leurs principes physiques et physiologiques sous-jacents. Ce chapitre s'éloigne de ce format pour offrir une perspective différente sur la neuroimagerie. Ici, nous allons plutôt discuter des coûts énergétiques et environnementaux liés aux différentes étapes de recherche.
 
@@ -59,12 +28,12 @@ En tant que chercheur·euse·s, il est important de reconnaître l’impact que 
 ```{figure} ./reproductibilite/research-cycle.jpg
 ---
 width: 800px
-name: research-cycle-fig
+name: research-cycle-fig-impact-env
 ---
 Cycle de découvertes en recherche. Figure par [scriberia](https://info.scriberia.com/contact-us) dans le cadre du livre [The Turing way](https://the-turing-way.netlify.app) sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/), DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807).
 ```
 
-La {numref}`research-cycle-fig` dépeint les différentes étapes de la méthode scientifique intégrant les principes de science ouverte. Avant de discuter des coûts environnementaux associés à chaque étape, de la cueillette de données à la réutilisation des données de recherche, nous allons brièvement voir comment il est possible d’estimer l’empreinte environnementale des activités de recherche. À la fin du chapitre, nous allons proposer quelques pistes de solutions et de réflexions.
+La {numref}`research-cycle-fig-impact-env` dépeint les différentes étapes de la méthode scientifique intégrant les principes de science ouverte. Avant de discuter des coûts environnementaux associés à chaque étape, de la cueillette de données à la réutilisation des données de recherche, nous allons brièvement voir comment il est possible d’estimer l’empreinte environnementale des activités de recherche. À la fin du chapitre, nous allons proposer quelques pistes de solutions et de réflexions.
 
 ### Calculer l'impact environnemental
 
@@ -85,7 +54,7 @@ L’empreinte carbone correspond à la quantité totale de gaz à effet de serre
 
 Pour les équipements de recherche spécifiquement, il est possible de se baser sur une méthode appelée analyse du cycle de vie (ACV ou Life Cycle Assessment) pour évaluer leur impact environnemental sur l’ensemble ou sur une partie de leur cycle de vie. Il existe deux types d’analyse du cycle de vie: l’ACV attributionnelle (Attributional Life Cycle Assessment) et l’ACV conséquente (Consequential Life Cycle Assessment) {cite:p}`schaubroeck_relevance_2023`.
 
-L’ACV attributionnelle est associée à l’impact d’un produit ou d’un service tel qu’il existe, en considérant les différentes étapes de son cycle de vie. Cela pourrait comprendre l’extraction et la fabrication des matériaux nécessaires pour développer un appareil jusqu’à sa fin de vie (p. ex. recyclage ou élimination). Cette méthode pourrait par exemple être utilisée si nous voudrions comparer l’impact environnemental associé à deux différents modèles d’IRM (p. ex. Siemens Trio 3T vs Philips Ingenia Elition 3T). 
+L’ACV attributionnelle est associée à l’impact d’un produit ou d’un service tel qu’il existe, en considérant les différentes étapes de son cycle de vie. Cela pourrait comprendre l’extraction et la fabrication des matériaux nécessaires pour développer un appareil jusqu’à sa fin de vie (p. ex. recyclage ou élimination). Cette méthode pourrait par exemple être utilisée si nous voudrions comparer l’impact environnemental associé à deux différents modèles d’IRM (p. ex. Siemens Trio 3T vs Philips Ingenia Elition 3T).
 
 L’ACV conséquente fournit une information quant à l’impact environnemental direct ou indirect conséquent à une décision potentielle. Ce type d’analyse se concentre donc sur les impacts additionnels ou évités de l’utilisation ou non d’un produit. L’ACV conséquente serait pertinente si nous voudrions estimer par exemple l’impact environnemental d’inclure une session supplémentaire d’acquisition IRM dans notre étude plutôt qu’une seule {cite:p}`mcalister2024`. Dans ce cas, nous ne prendrions pas en compte l’impact associé à la fabrication de l’appareil, simplement l’usage potentiel à venir.
 
@@ -106,7 +75,7 @@ Pour réaliser une ACV attributionnelle, il faudrait prendre en compte l’impac
 
 #### Hélium liquide
 
-La majorité de l’empreinte environnementale associée à la collecte de données d’IRM est liée à l’utilisation d’hélium liquide. En effet, dans le chapitre [Imagerie par résonance magnétique](https://methodes-cogneuro.github.io/irm.html), nous avons brièvement mentionné la nécessité d’utiliser de l’hélium liquide pour refroidir l’aimant supraconducteur de l’appareil IRM. Mais l’approvisionnement en hélium liquide ne vient pas sans coût environnemental et financier ! En effet, l’hélium est une ressource non-renouvelable provenant de l’extraction de gaz naturel. La {numref}`approvisionnement-helium-fig` résume les étapes du processus d’approvisionnement en hélium liquide. 
+La majorité de l’empreinte environnementale associée à la collecte de données d’IRM est liée à l’utilisation d’hélium liquide. En effet, dans le chapitre [Imagerie par résonance magnétique](https://methodes-cogneuro.github.io/irm.html), nous avons brièvement mentionné la nécessité d’utiliser de l’hélium liquide pour refroidir l’aimant supraconducteur de l’appareil IRM. Mais l’approvisionnement en hélium liquide ne vient pas sans coût environnemental et financier ! En effet, l’hélium est une ressource non-renouvelable provenant de l’extraction de gaz naturel. La {numref}`approvisionnement-helium-fig` résume les étapes du processus d’approvisionnement en hélium liquide.
 
 ```{figure} ./impacts_env/helium.png
 ---
@@ -126,7 +95,7 @@ L’aimant IRM de l’Unité de Neuroimagerie Fonctionnelle (UNF) a fêté ses 2
 Donc en date de 2025, les émissions de CO2 associées à l'approvisionnement et l’utilisation de l’hélium liquide à l’UNF tourneraient autour de 71.94 et 95.04 tonnes métriques, soit l’équivalent de 36 à 47 vols aller-retour Montréal-Paris (équivalences estimées selon [le calculateur d’émissions de CO2 myclimate](https://co2.myclimate.org/en/flight_calculators)). À noter que les chiffres utilisés pour le calcul ci-haut supposent une relation linéaire entre le volume d’hélium liquide et les émissions de CO2.
 ```
 
-Il est important de noter que cet enjeu est également applicable à la magnétoencéphalographie (MEG) qui consomme environ 2500 L d’hélium liquide par année {cite:p}`baillet2024`. Heureusement, il est possible d’utiliser des systèmes de récupération de l’hélium, réduisant les émissions de gaz à effet de serre associées à la production d’hélium liquide ainsi qu’à son transport. 
+Il est important de noter que cet enjeu est également applicable à la magnétoencéphalographie (MEG) qui consomme environ 2500 L d’hélium liquide par année {cite:p}`baillet2024`. Heureusement, il est possible d’utiliser des systèmes de récupération de l’hélium, réduisant les émissions de gaz à effet de serre associées à la production d’hélium liquide ainsi qu’à son transport.
 
 #### Consommation énergétique
 
@@ -140,7 +109,7 @@ Pour estimer l’impact environnemental associé à un scan IRM via l’ACV cons
 Pour évaluer adéquatement la consommation énergétique associée à l’utilisation d’un appareil IRM, il est important de considérer les sources d’électricité utilisées. En effet, l’intensité carbone de la production d’électricité, c’est-à-dire la quantité de CO2 émis par unité d’énergie générée, dépend des sources d’électricité qu’une région utilise {cite:p}`schollhammer2024`.  Par exemple, en 2021, la majorité de l’électricité produite au Québec provenait de sources renouvelables (99.6%), alors que 0.4% provenait du pétrole et du gaz naturel. Avec ces sources d’énergie, les émissions de GES associés à ce secteur étaient estimées à 0.3 Mt d’éq CO2. Par contre, 85% de l’énergie produite en Alberta provenait de sources d’énergie non-renouvelable en 2021. En 2022, les GES émis par le secteur de l’énergie albertain s’élevaient à 19.4 Mt d’éq CO2 {cite:p}`gouvernement_du_canada_e_2024`.
 ```
 
-### Prétraitement, analyse et préservation des données 
+### Prétraitement, analyse et préservation des données
 
 Étant donné la complexité des analyses et la taille des données, les projets de recherche en neuroimagerie reposent souvent sur une infrastructure numérique pour répondre aux besoins computationnels. Cette demande doit être supportée par des centres de données, qui fournissent les infrastructures nécessaires pour entreposer et effectuer le prétraitement et l’analyse de ces données. Ces infrastructures, bien qu’essentielles, consomment beaucoup d’énergie. À l’échelle mondiale, le secteur des technologies de l’information et de la communication génère entre 1.4% et 3.9% des émissions globales de CO2, notamment en raison de la demande électrique nécessaire pour faire fonctionner, maintenir et refroidir les serveurs de données {cite:p}`freitag_real_2021` {cite:p}`habibi_khalaj_energy_2016` {cite:p}`malmodin_ict_2024`.
 
@@ -152,13 +121,13 @@ L’infrastructure numérique réfère aux composantes matérielles (p.ex., cent
 
 Nous avons parlé dans les cours précédents des différentes étapes de prétraitement à appliquer aux données de neuroimagerie avant de pouvoir effectuer nos analyses (p. ex. recalage dans un espace de référence, correction du mouvement, etc). Plusieurs paramètres de prétraitement doivent être choisis par les chercheuses et chercheurs et ces choix influencent la consommation énergétique requise pour compléter cette étape. Souter et collègues (2024) ont analysé l’impact carbone de différentes options de prétraitement avec le logiciel fMRIPrep et ont proposé une liste de recommandations pour diminuer cet impact, sans pour autant diminuer la qualité des images obtenues {cite:p}`souter_measuring_2024`.
 
-```{admonition} Impact du moment de la journée sur l’intensité carbone 
+```{admonition} Impact du moment de la journée sur l’intensité carbone
 :class: tip
 :name: jour-nuit-tip
 Le moment de la journée durant lequel nous effectuons le prétraitement ou l’analyse de nos données peut impacter l’intensité carbone de la tâche selon où nous nous trouvons dans le monde. Par exemple, les sources d’énergie au Royaume sont un mélange d’énergie renouvelable et non-renouvelable. La proportion d’énergie renouvelable n’est pas assez élevée pour répondre à la demande lors des périodes d’utilisation élevée d’énergie, et donc les sources d’énergie à forte intensité carbone doivent être utilisées ([https://carbonintensity.org.uk](https://carbonintensity.org.uk)). Si vous vous trouvez dans une région qui fonctionne de manière similaire, il est recommandé de lancer ses analyses lors des périodes de faible achalandage énergétique pour réduire l’impact carbone de son étude (pour avoir accès à ces informations, voir [https://app.electricitymaps.com/](https://app.electricitymaps.com/)).
 ```
 
-Outre les choix de paramètres, le choix du logiciel utilisé pour réaliser le prétraitement et les analyses des données contribue aussi à l’impact carbone. Souter et collègues (2025) ont montré qu’il pouvait y avoir jusqu’à un facteur de 30 entre les émissions de CO2 associées à différents logiciels {cite:p}`souter_comparing_2025`. Dans tous les cas, les émissions de CO2 étaient plus élevées pour le prétraitement comparativement à l’analyse des données (analyse statistique au niveau du groupe). 
+Outre les choix de paramètres, le choix du logiciel utilisé pour réaliser le prétraitement et les analyses des données contribue aussi à l’impact carbone. Souter et collègues (2025) ont montré qu’il pouvait y avoir jusqu’à un facteur de 30 entre les émissions de CO2 associées à différents logiciels {cite:p}`souter_comparing_2025`. Dans tous les cas, les émissions de CO2 étaient plus élevées pour le prétraitement comparativement à l’analyse des données (analyse statistique au niveau du groupe).
 
 La taille totale des fichiers générés varie également beaucoup entre les logiciels, ce qui peut affecter l’impact carbone lié au stockage des données. Par exemple, le logiciel fMRIPrep peut produire jusqu’à 5.55 GB de données par sujet, alors que les fichiers habituellement utilisés pour des analyses subséquentes ne représentent que 0.23 GB {cite:p}`souter2023`. La consommation d’énergie associée au stockage des données dépend du type de serveur. Par exemple, dans l’article de Smith et collègues (2025), la consommation d’énergie de leur serveur s’élevait à 19 KWh/TB/an {cite:p}`smith_doctoral_2025`. Si nous prenons en compte qu’un jeu de données standard en IRMf comprend 40 participant·e·s, alors la consommation énergétique requise pour stocker nos données prétraitées est de 4.12 KWh / an. Si ce serveur est situé au Québec, les émissions de GES liées au stockage de notre jeu de données serait de 142.14 g d'éq CO2 / an (34.5 g éq CO2 / KWh × 4.12 KWh / an) {cite:p}`levasseur2021`. Par contre, si ce serveur se situe en Alberta, cette valeur s’élèverait à 2224.8 g d’éq CO2 / an (540 g éq CO2 / KWh × 4.12 KWh / an) (Emission Factors and Reference Values - Tableau 5.1 {cite:p}`canada_greenhouse_gas_2024`). Pour des jeux de données d’envergure comme celui du Human Connectome Project, la taille totale des fichiers compte pour 80 TB {cite:p}`dataladhandbook`. Cela équivaudrait à 216.1 kg éq CO2 / an si ces données étaient stockées sur un serveur au Québec et 820.8 kg éq CO2 / an sur un serveur en Alberta !
 
@@ -166,7 +135,7 @@ La taille totale des fichiers générés varie également beaucoup entre les log
 
 Maintenant que nous avons acquis nos données et que nous les avons analysées, il est venu le temps de présenter nos résultats ! Ce partage de connaissances se fait soit via la présentation des résultats lors de conférences, soit sous forme de publications dans des journaux scientifiques.
 
-Pendant la pandémie de la Covid-19, plusieurs conférences scientifiques se sont déplacées en ligne (p. ex., ISMRM 2020 et 2021, OHBM 2020 et 2021, SfN 2021). Malheureusement, ce format ne semble pas avoir persisté. De nombreuses conférences internationales ont repris en présentiel, obligeant donc à une grande proportion des participant·e·s à se déplacer en avion. Or, le secteur de l’aviation pourrait à lui seul contribuer à un réchauffement global cumulé d’environ 0.1 °C d’ici 2050 {cite:p}`klower2021`. Ce chiffre peut paraître assez faible a priori, mais sachant qu'il est impératif de limiter le réchauffement global à 1.5°C selon les recommandations du GIEC alors que nous étions déjà à 1.28°C en moyenne en 2024 {cite:p}`nasa2024`, cet impact est loin d’être négligeable. 
+Pendant la pandémie de la Covid-19, plusieurs conférences scientifiques se sont déplacées en ligne (p. ex., ISMRM 2020 et 2021, OHBM 2020 et 2021, SfN 2021). Malheureusement, ce format ne semble pas avoir persisté. De nombreuses conférences internationales ont repris en présentiel, obligeant donc à une grande proportion des participant·e·s à se déplacer en avion. Or, le secteur de l’aviation pourrait à lui seul contribuer à un réchauffement global cumulé d’environ 0.1 °C d’ici 2050 {cite:p}`klower2021`. Ce chiffre peut paraître assez faible a priori, mais sachant qu'il est impératif de limiter le réchauffement global à 1.5°C selon les recommandations du GIEC alors que nous étions déjà à 1.28°C en moyenne en 2024 {cite:p}`nasa2024`, cet impact est loin d’être négligeable.
 
 Mais quelle est la contribution des conférences scientifiques sur les émissions de GES liés à l’aviation ? Il a été estimé que les émissions de GES associées au voyagement pour se rendre à la conférence de la Society for Neuroscience (environ 30000 participant.·e·s annuellement) s’élevaient à 22000 tonnes de CO2 en 2014 {cite:p}`nathans_2016`. Epp et collègues (2023) ont fait cet exercice dans le contexte des conférences de l’Organization for Human Brain Mappings (OHBM) (voir Tableau 1) {cite:p}`epp_2023`. Leur analyse montre que l’empreinte carbone de la conférence de 2019 à Rome, à elle seule, était équivalente à l’empreinte carbone totale de 50000 personnes vivant dans un pays à faible revenu sur une période de 1 an. Par contre, cet impact varie selon la localisation de la conférence. Par exemple, bien que la conférence de 2019 ait attiré près de 1000 participant·e·s de plus qu’en 2015, cette dernière a généré environ 2000 tonnes supplémentaires d’éq CO2, en raison d’un plus grand nombre de vols long (>1500 km) ou super long (>8000 km). Si l’on reprend l’exemple de la conférence de 2019, même si 45.6% des participant·e·s ont effectué un vol super long pour se rendre à la conférence, leur contribution aux émissions d’éq CO2 s’élève à 88.5% des émissions totales estimées.
 
@@ -189,9 +158,9 @@ Maintenant que nous nous sommes sensibilisés à l’impact environnemental lié
 
 La première étape d’une étude scientifique commence par l’idéation du projet de recherche, c’est-à-dire la formulation de la question de recherche et l’élaboration du protocole expérimental en fonction de ce qui a été fait précédemment dans la littérature ({numref}`research-cycle-fig`). Cette étape pourrait/devrait comprendre une réflexion concernant la pertinence globale du projet de manière plus exhaustive.
 
-Autrement dit, le manque de connaissances ne justifie pas toujours, à elle seule, la réalisation d’une nouvelle étude. Nous pourrions donc nous demander si les retombées scientifiques, sociales ou cliniques potentielles d’un projet justifient les coûts environnementaux et financiers associés. Même s’il n’existe pas d’outils nous permettant de faire cette évaluation coût-bénéfice, il est tout de même possible d’entamer certaines réflexions dès l’idéation de notre projet. 
+Autrement dit, le manque de connaissances ne justifie pas toujours, à elle seule, la réalisation d’une nouvelle étude. Nous pourrions donc nous demander si les retombées scientifiques, sociales ou cliniques potentielles d’un projet justifient les coûts environnementaux et financiers associés. Même s’il n’existe pas d’outils nous permettant de faire cette évaluation coût-bénéfice, il est tout de même possible d’entamer certaines réflexions dès l’idéation de notre projet.
 
-Il existe déjà plusieurs pratiques permettant d’augmenter les bénéfices de notre recherche. Par exemple, si nous cherchons à développer un plan d’intervention auprès d’une population spécifique, il serait essentiel de collaborer étroitement avec des individus de cette population pour s’assurer que l’on mesure des variables pertinentes et que le plan d’intervention proposé est réalistiquement implémentable dans leur réalité. Il est également possible de mettre en place différentes stratégies pour maximiser la valeur des données recueillies. Par exemple, nous pourrions élaborer un plan de partage de données incluant la plateforme utilisée, un format standard utilisé pour organiser les données, ainsi que la documentation nécessaire à leur réutilisation. Pour diminuer les coûts environnementaux, nous pourrions considérer dès l'élaboration de notre projet s’il serait possible d’utiliser des données déjà existantes, quelle serait la durée minimale d’acquisition nécessaire et le type d’équipement le plus approprié. Par contre, cette réflexion est rendue difficile en raison du manque d’information concernant le coût énergétique associé à certains choix expérimentaux. 
+Il existe déjà plusieurs pratiques permettant d’augmenter les bénéfices de notre recherche. Par exemple, si nous cherchons à développer un plan d’intervention auprès d’une population spécifique, il serait essentiel de collaborer étroitement avec des individus de cette population pour s’assurer que l’on mesure des variables pertinentes et que le plan d’intervention proposé est réalistiquement implémentable dans leur réalité. Il est également possible de mettre en place différentes stratégies pour maximiser la valeur des données recueillies. Par exemple, nous pourrions élaborer un plan de partage de données incluant la plateforme utilisée, un format standard utilisé pour organiser les données, ainsi que la documentation nécessaire à leur réutilisation. Pour diminuer les coûts environnementaux, nous pourrions considérer dès l'élaboration de notre projet s’il serait possible d’utiliser des données déjà existantes, quelle serait la durée minimale d’acquisition nécessaire et le type d’équipement le plus approprié. Par contre, cette réflexion est rendue difficile en raison du manque d’information concernant le coût énergétique associé à certains choix expérimentaux.
 
 #### Mesurer et rapporter
 
@@ -203,16 +172,16 @@ Ces informations peuvent être rapportées de différentes manières dans un art
 
 #### Faire des choix écoresponsables
 
-Au-delà de la quantification de l’impact carbone, il est déjà possible d’utiliser les informations accessibles pour faire des choix éclairés lors de la conception de nos projets de recherche. Par exemple, les données sur l’ACV peuvent être utilisées pour faire des choix éco-responsables au niveau de l’achat d’équipement (p. ex. choisir des équipements avec une faible ACV), de leur maintenance (p. ex. prioriser la réparation plutôt que l’achat de nouveaux équipements) et de leur usage. 
+Au-delà de la quantification de l’impact carbone, il est déjà possible d’utiliser les informations accessibles pour faire des choix éclairés lors de la conception de nos projets de recherche. Par exemple, les données sur l’ACV peuvent être utilisées pour faire des choix éco-responsables au niveau de l’achat d’équipement (p. ex. choisir des équipements avec une faible ACV), de leur maintenance (p. ex. prioriser la réparation plutôt que l’achat de nouveaux équipements) et de leur usage.
 
 Il serait également possible de mutualiser les ressources entre les laboratoires de recherche plutôt que de dupliquer le matériel et les dépenses ! Par exemple, un laboratoire ayant acquis des tablettes électroniques pour leur cueillette de données pourrait les rendre accessibles à d’autres laboratoires. Le [Registre des Infrastructures et des Équipements (RIÉ)](https://rie.umontreal.ca/accueil/) à l’Université de Montréal est un bon exemple de plateforme supportant le partage d’équipement de recherche en biologie, biophysique et biochimie.
 
-Au niveau de la consommation énergétique au niveau du prétraitement et de l’analyse des données IRMf. Nous avons déjà discuté des études de Souter et collègues (2024 et 2025) proposant certaines pistes de solutions pour diminuer l’impact carbone du prétraitement des données via fMRIPrep ou via l’utilisation d’autres logiciels (SPM et FSL). En ce qui concerne les analyses, [The Turing Way Community](https://book.the-turing-way.org/ethical-research/activism/activism-env-impact) propose des stratégies de réduction de l’impact environnemental, comme l’amélioration de l’efficacité du code, l’évitement de tâches non nécessaires, l’utilisation de centres de données verts. Réduire la quantité de données en éliminant les fichiers redondants et inutilisés permet également de diminuer la demande énergétique associée à la préservation de données (voir [fMRIPrepCleanup](https://github.com/NickESouter/fMRIPrepCleanup) pour un exemple). 
+Au niveau de la consommation énergétique au niveau du prétraitement et de l’analyse des données IRMf. Nous avons déjà discuté des études de Souter et collègues (2024 et 2025) proposant certaines pistes de solutions pour diminuer l’impact carbone du prétraitement des données via fMRIPrep ou via l’utilisation d’autres logiciels (SPM et FSL). En ce qui concerne les analyses, [The Turing Way Community](https://book.the-turing-way.org/ethical-research/activism/activism-env-impact) propose des stratégies de réduction de l’impact environnemental, comme l’amélioration de l’efficacité du code, l’évitement de tâches non nécessaires, l’utilisation de centres de données verts. Réduire la quantité de données en éliminant les fichiers redondants et inutilisés permet également de diminuer la demande énergétique associée à la préservation de données (voir [fMRIPrepCleanup](https://github.com/NickESouter/fMRIPrepCleanup) pour un exemple).
 
 ```{admonition} Science (ou)verte !
 :class: tip
 :name: science-ouverte-tip
-Les pratiques de science ouverte incluent notamment le partage de données et le partage de code. Le partage des données permet de limiter l’acquisition redondante de données qui, comme nous l’avons vu au début de la section, peut être très coûteuse au niveau énergétique. De plus, si ces données sont partagées dans des formats standardisés, cela peut favoriser l’utilisation des données et éliminer le besoin de conversion de format. Cependant, il est important de choisir une plateforme de partage de données utilisant des serveurs ayant un faible impact environnemental. Par exemple, la plateforme Open Science Framework (OSF) qui utilise Google Cloud. Les centres de données de Google sont parmi les plus efficaces en termes de consommation énergétique ([https://datacenters.google/operating-sustainably/](https://datacenters.google/operating-sustainably/)). 
+Les pratiques de science ouverte incluent notamment le partage de données et le partage de code. Le partage des données permet de limiter l’acquisition redondante de données qui, comme nous l’avons vu au début de la section, peut être très coûteuse au niveau énergétique. De plus, si ces données sont partagées dans des formats standardisés, cela peut favoriser l’utilisation des données et éliminer le besoin de conversion de format. Cependant, il est important de choisir une plateforme de partage de données utilisant des serveurs ayant un faible impact environnemental. Par exemple, la plateforme Open Science Framework (OSF) qui utilise Google Cloud. Les centres de données de Google sont parmi les plus efficaces en termes de consommation énergétique ([https://datacenters.google/operating-sustainably/](https://datacenters.google/operating-sustainably/)).
 ```
 ### Dans nos institutions
 
@@ -225,7 +194,7 @@ Si vous vous impliquez dans l’organisation de divers événements (p. ex. les 
 ```{admonition} Ombre climatique
 :class: tip
 :name: ombre-climatique-tip
-L’ombre climatique réfère à l’impact climatique total de nos actions, au-delà de notre empreinte carbone {cite:p}`pattee_2024`. Ce concept prend donc en compte l’impact que l’on a plus généralement sur les autres et la société. L’ombre climatique de notre institution pourrait comprendre ses investissements dans les énergies fossiles et non simplement l’empreinte carbone associée à l’usage et au maintien de ses infrastructures. Notre ombre climatique au niveau de notre vie académique pourrait par exemple inclure l’inclusion de rapport carbone dans nos mémoires et nos thèses pour rapporter l’empreinte carbone de notre recherche, ou bien encore prendre le temps de discuter au sein de nos laboratoires des enjeux environnementaux auxquels nous faisons face. 
+L’ombre climatique réfère à l’impact climatique total de nos actions, au-delà de notre empreinte carbone {cite:p}`pattee_2024`. Ce concept prend donc en compte l’impact que l’on a plus généralement sur les autres et la société. L’ombre climatique de notre institution pourrait comprendre ses investissements dans les énergies fossiles et non simplement l’empreinte carbone associée à l’usage et au maintien de ses infrastructures. Notre ombre climatique au niveau de notre vie académique pourrait par exemple inclure l’inclusion de rapport carbone dans nos mémoires et nos thèses pour rapporter l’empreinte carbone de notre recherche, ou bien encore prendre le temps de discuter au sein de nos laboratoires des enjeux environnementaux auxquels nous faisons face.
 ```
 
 ### Dans notre vie académique
@@ -236,20 +205,20 @@ Favoriser les conférences régionales et les conférences à faible impact carb
 
 #### Engagement et communication scientifique
 
-Le rôle de chercheur·euse·s offre un statut privilégié pour discuter des enjeux environnementaux au niveau des pratiques scientifiques, mais également pour accéder et comprendre la littérature scientifique pertinente. Utilisez les plateformes qui vous sont disponibles pour mettre de l’avant ces enjeux, que ce soit en affichant l’impact carbone de votre étude sur votre affiche scientifique, lors d’une présentation orale, ou au sein de votre laboratoire. Normaliser ces discours peut mener à des changements de mentalité propices à des actions collectives. 
+Le rôle de chercheur·euse·s offre un statut privilégié pour discuter des enjeux environnementaux au niveau des pratiques scientifiques, mais également pour accéder et comprendre la littérature scientifique pertinente. Utilisez les plateformes qui vous sont disponibles pour mettre de l’avant ces enjeux, que ce soit en affichant l’impact carbone de votre étude sur votre affiche scientifique, lors d’une présentation orale, ou au sein de votre laboratoire. Normaliser ces discours peut mener à des changements de mentalité propices à des actions collectives.
 
 ### La (fausse ?) promesse de l'IA
 
 Avec les prouesses de l’intelligence artificielle (IA), il serait raisonnable de croire que cette technologie pourrait nous permettre de résoudre, du moins en partie, la crise climatique de manière générale, mais également en ce qui nous concerne dans ce chapitre, c’est-à-dire pour tenter de réduire l’empreinte carbone de la recherche en neuroimagerie. Il pourrait donc être possible de se concentrer sur une application de l’IA visant à minimiser l’impact environnemental associé aux différentes étapes du processus de recherche, par exemple, en optimisant une séquence d’acquisition IRMf pour limiter la durée des scans ou pour sélectionner une séquence moins énergivore, ou encore pour sélectionner des algorithmes plus verts pour analyser ce type de données {cite:p}`lannelongue_green_2021` {cite:p}`lorenz_2016`.
 
-Par contre, il est important de reconnaître les impacts négatifs de l’IA et de responsabiliser l’utilisation que nous en faisons. La balance entre les impacts positifs de l’IA et ses impacts négatifs, particulièrement sur le plan environnemental, est complexe. Les émissions de gaz à effet de serre liées à l’intelligence artificielle proviennent de sources diverses, notamment le stockage des données, l’entraînement, l’ajustement et l’utilisation de modèles d’apprentissage profond. L’impact environnemental de ces étapes est d’autant plus exagéré par la poursuite de l’intelligence artificielle générale et par la croyance que plus c’est mieux: plus de données, des modèles plus larges, et plus de temps et de ressources computationnelles mèneraient au développement de modèles plus performants {cite:p}`krizhevsky_imagenet_2012` {cite:p}`varoquaux_2025` {cite:p}`bhardwaj_2025`. Ces pratiques accroissent le rythme d’expansion des centres de données et l’intégration des super-ordinateurs qui dépendent principalement des énergies fossiles pour fonctionner en continu 24 heures sur 24, 7 jours sur 7 {cite:p}`tec_2025`. Entre 2020 et 2023, Les émissions opérationnelles des quatre principaux acteurs dans le domaine de l’IA (Amazon, Microsoft, Alphabet (Google) et Meta) ont augmenté de 150% en moyenne {cite:p}`itu_greening_2025`. De plus, les infrastructures et les centres de données requièrent également d’être refroidis, ce qui nécessite l’utilisation d’eau douce. Au-delà de l’impact environnemental, cette consommation de ressources entraîne d'importants enjeux humains et sociaux considérant le développement de centres de données dans des zones confrontés à un stress hydrique. 
+Par contre, il est important de reconnaître les impacts négatifs de l’IA et de responsabiliser l’utilisation que nous en faisons. La balance entre les impacts positifs de l’IA et ses impacts négatifs, particulièrement sur le plan environnemental, est complexe. Les émissions de gaz à effet de serre liées à l’intelligence artificielle proviennent de sources diverses, notamment le stockage des données, l’entraînement, l’ajustement et l’utilisation de modèles d’apprentissage profond. L’impact environnemental de ces étapes est d’autant plus exagéré par la poursuite de l’intelligence artificielle générale et par la croyance que plus c’est mieux: plus de données, des modèles plus larges, et plus de temps et de ressources computationnelles mèneraient au développement de modèles plus performants {cite:p}`krizhevsky_imagenet_2012` {cite:p}`varoquaux_2025` {cite:p}`bhardwaj_2025`. Ces pratiques accroissent le rythme d’expansion des centres de données et l’intégration des super-ordinateurs qui dépendent principalement des énergies fossiles pour fonctionner en continu 24 heures sur 24, 7 jours sur 7 {cite:p}`tec_2025`. Entre 2020 et 2023, Les émissions opérationnelles des quatre principaux acteurs dans le domaine de l’IA (Amazon, Microsoft, Alphabet (Google) et Meta) ont augmenté de 150% en moyenne {cite:p}`itu_greening_2025`. De plus, les infrastructures et les centres de données requièrent également d’être refroidis, ce qui nécessite l’utilisation d’eau douce. Au-delà de l’impact environnemental, cette consommation de ressources entraîne d'importants enjeux humains et sociaux considérant le développement de centres de données dans des zones confrontés à un stress hydrique.
 
 Heureusement, plusieurs centres de données transitionnent vers des pratiques écoresponsables, en intégrant des équipements à meilleure efficacité énergétique, des techniques de refroidissement permettant de réduire la consommation énergétique ou encore en introduisant de plus en plus des sources d’énergie renouvelables {cite:p}`gugul_2023`. Les centres de données/de calcul haute performance (high performance computing; HPC) ayant la meilleure efficacité énergétique figurent sur la [liste GREEN500](https://www.top500.org/lists/green500/) {cite:p}`sharma_2006`. D’ailleurs, en juin 2025, le superordinateur dédié à la recherche canadienne, Rorqual, y était listé en 73e position {cite:p}`green500_2025` !
 
 ```{admonition} L'IA verte
 :class: tip
 :name: ia-verte-tip
-L’IA verte constitue un changement de paradigme dans le domaine de l’intelligence artificielle en proposant de nouvelles manières d’évaluer les modèles d’IA. Au lieu d’uniquement considérer la performance prédictive (accuracy) comme métrique d’évaluation, l’IA verte soutient l’inclusion de métriques visant à mesurer l’efficacité computationnelle {cite:p}`schwartz_2019`. 
+L’IA verte constitue un changement de paradigme dans le domaine de l’intelligence artificielle en proposant de nouvelles manières d’évaluer les modèles d’IA. Au lieu d’uniquement considérer la performance prédictive (accuracy) comme métrique d’évaluation, l’IA verte soutient l’inclusion de métriques visant à mesurer l’efficacité computationnelle {cite:p}`schwartz_2019`.
 ```
 
 ## Conclusions
@@ -262,7 +231,7 @@ Le format des exercices de ce chapitre diffère de celui des chapitres précéde
 
 ```{admonition} Exercice 1
 :class: note
-a. Quels gestes pourriez-vous envisager pour réduire l’impact environnemental dans votre recherche, dans vos institutions ou dans votre vie académique ? 
+a. Quels gestes pourriez-vous envisager pour réduire l’impact environnemental dans votre recherche, dans vos institutions ou dans votre vie académique ?
 b. Quels gestes seraient les plus accessibles ? Lesquels seraient les plus difficiles à réaliser ? Pourquoi ?
 ```
 
@@ -280,3 +249,32 @@ Selon vous, dans l’écosystème de recherche, quels acteurs ont le plus de pou
 :class: note
 À quoi pourrait ressembler un projet de recherche en neuroimagerie qui intègre des considérations environnementales à toutes les étapes de recherche ?
 ```
+
+## Contributrices
+
+🤔 Contenu | 💻 Code | 🧩 Quizz | 👀 révision du texte
+::::{grid}
+
+:::{grid-item}
+![Lune Bellec](https://avatars.githubusercontent.com/u/1670887?v=4?s=100)
+[Lune bellec](https://github.com/lunebellec) 👀
+:::
+
+:::{grid-item}
+![Dylan Sutterlin Guindon](https://avatars.githubusercontent.com/u/70554831?v=4?s=100)
+[Dylan Sutterlin Guindon](https://github.com/dylansutterlin)
+👀
+:::
+
+:::{grid-item}
+![Marie-Eve Picard](https://avatars.githubusercontent.com/u/77584086?v=4?s=100)
+[Marie-Eve Picard](https://github.com/me-pic)
+🤔🧩👀
+:::
+
+:::{grid-item}
+[Aline Moussard]()
+👀
+:::
+
+::::

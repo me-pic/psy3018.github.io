@@ -19,6 +19,7 @@ project:
     - file: methodes_neurocog/tep.md
     - file: methodes_neurocog/cartes_statistiques.md
     - file: methodes_neurocog/reproductibilite.md
+    - file: methodes_neurocog/impacts_env.md
 
 site:
   template: book-theme

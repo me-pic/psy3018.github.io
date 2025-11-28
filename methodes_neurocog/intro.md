@@ -81,6 +81,11 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
  :::
 
  :::{grid-item}
+ [Aline Moussard]()
+ 👀
+ :::
+
+ :::{grid-item}
  ![Xanthy Lajoie](https://avatars.githubusercontent.com/u/90349544?v=4?s=100)
  [Xanthy Lajoie](https://github.com/Xanthylajoie)
  🤔👀
@@ -108,6 +113,12 @@ Ce livre est dans une large mesure "reproductible": de nombreuses figures sont g
  ![Andréanne Proulx](https://avatars.githubusercontent.com/u/65092948?v=4?s=100)
  [Andréanne Proulx](https://github.com/anproulx)
  🤔👀
+ :::
+
+ :::{grid-item}
+ ![Dylan Sutterlin Guindon](https://avatars.githubusercontent.com/u/70554831?v=4?s=100)
+ [Dylan Sutterlin Guindon](https://github.com/dylansutterlin)
+ 👀
  :::
 
  ::::
