@@ -14,15 +14,16 @@ kernelspec:
 
 ## Objectifs
 
-Tout au long de ce cours, nous avons discuté de différentes techniques de neuroimagerie pour étudier les variations structurelles et fonctionnelles cérébrales, ainsi que leurs principes physiques et physiologiques sous-jacents. Ce chapitre s'éloigne de ce format pour offrir une perspective différente sur la neuroimagerie. Ici, nous allons plutôt discuter des coûts énergétiques et environnementaux liés aux différentes étapes de recherche.
+Tout au long de ce cours, nous avons discuté des avantages et des limitations de différentes techniques de neuroimagerie pour étudier les variations structurelles et fonctionnelles cérébrales. Ce chapitre offre une perspective différente: discuter des coûts énergétiques et environnementaux liés aux différentes étapes de recherche. Certains de ces coûts sont spécifiques de la technique utilisée, alors que d'autres s'appliquent à l'ensemble d'entre elles.
 
 Les objectifs du cours sont les suivants:
 - Identifier et discuter de l'impact environnemental des différentes étapes de recherche.
-- Identifier et discuter de différentes solutions.
+- Identifier et discuter de différentes solutions pour réduire cet impact.
 
 ## Impacts environnementaux tout au long du processus de recherche
 
 Les rapports d’évaluation du GIEC (Groupe d’experts intergouvernemental sur l’évolution du climat) compilant les résultats d’études scientifiques actuelles sur le climat résument les impacts des activités humaines, principalement via l’émission de gaz à effet de serre ([AR6 Synthesis Report: Climate Change 2023](https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_FullVolume.pdf)) {cite:p}`ipcc2023`. Le rapport de 2023 souligne qu’il faut atteindre des émissions nettes de CO2 nulles pour limiter le réchauffement climatique global d’origine humaine à 1.5°C comparativement au niveau pré-industriel. Autrement, les conséquences irréversibles risquent de s’accroître au niveau environnemental (p. ex. perte d’habitats et de biodiversité), sanitaire (p. ex. augmentation de la propagation de maladies vectorielles), social (p. ex. certaines populations sont plus vulnérables aux conséquences climatiques) et économique (p. ex. l’augmentation des évènements météorologiques extrêmes peut mener à la destruction des terres et des infrastructures).
+
 En tant que chercheur·euse·s, il est important de reconnaître l’impact que nous avons sur la crise climatique. En 2019, les Fonds de Recherche du Québec (FRQ), un organisme subventionnaire public au niveau provincial, ont publié un [plan d’action](https://frq.gouv.qc.ca/app/uploads/2021/04/plan-action-responsabilite-environnementale_vf.pdf) pour sensibiliser la communauté scientifique aux pratiques écoresponsables et durables en recherche, reconnaissant les impacts tant négatifs que positifs que la recherche peut générer au niveau environnemental. Malgré ces efforts, les impacts environnementaux dans le processus de recherche en neuroimagerie demeurent peu discutés au sein de la communauté scientifique et dans le curriculum universitaire.
 
 ```{figure} ./reproductibilite/research-cycle.jpg
@@ -33,7 +34,7 @@ name: research-cycle-fig-impact-env
 Cycle de découvertes en recherche. Figure par [scriberia](https://info.scriberia.com/contact-us) dans le cadre du livre [The Turing way](https://the-turing-way.netlify.app) sous licence [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/), DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807).
 ```
 
-La {numref}`research-cycle-fig-impact-env` dépeint les différentes étapes de la méthode scientifique intégrant les principes de science ouverte. Avant de discuter des coûts environnementaux associés à chaque étape, de la cueillette de données à la réutilisation des données de recherche, nous allons brièvement voir comment il est possible d’estimer l’empreinte environnementale des activités de recherche. À la fin du chapitre, nous allons proposer quelques pistes de solutions et de réflexions.
+La {numref}`research-cycle-fig-impact-env` dépeint les différentes étapes de la méthode scientifique intégrant les principes de science ouverte. Avant de discuter des coûts environnementaux associés à chaque étape, de la cueillette de données à la réutilisation des données de recherche, nous allons brièvement voir comment il est possible d’estimer l’empreinte environnementale des activités de recherche. À la fin du chapitre, nous allons proposer quelques pistes de solutions et de réflexions pour réduire cette empreinte.
 
 ### Calculer l'impact environnemental
 
@@ -95,7 +96,7 @@ L’aimant IRM de l’Unité de Neuroimagerie Fonctionnelle (UNF) a fêté ses 2
 Donc en date de 2025, les émissions de CO2 associées à l'approvisionnement et l’utilisation de l’hélium liquide à l’UNF tourneraient autour de 71.94 et 95.04 tonnes métriques, soit l’équivalent de 36 à 47 vols aller-retour Montréal-Paris (équivalences estimées selon [le calculateur d’émissions de CO2 myclimate](https://co2.myclimate.org/en/flight_calculators)). À noter que les chiffres utilisés pour le calcul ci-haut supposent une relation linéaire entre le volume d’hélium liquide et les émissions de CO2.
 ```
 
-Il est important de noter que cet enjeu est également applicable à la magnétoencéphalographie (MEG) qui consomme environ 2500 L d’hélium liquide par année {cite:p}`baillet2024`. Heureusement, il est possible d’utiliser des systèmes de récupération de l’hélium, réduisant les émissions de gaz à effet de serre associées à la production d’hélium liquide ainsi qu’à son transport.
+Il est important de noter que cet enjeu est également applicable à la magnétoencéphalographie (MEG) qui consomme environ 2500 L d’hélium liquide par année {cite:p}`baillet2024`. Heureusement, il est possible d’utiliser des systèmes de récupération de l’hélium, réduisant les émissions de gaz à effet de serre associées à la production d’hélium liquide ainsi qu’à son transport. Le plateforme de MEG à l'UdeM dispose d'ailleurs d'un tel système. 
 
 #### Consommation énergétique
 
